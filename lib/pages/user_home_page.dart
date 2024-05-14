@@ -345,7 +345,7 @@ class _UserHomePageState extends State<UserHomePage> {
                     child: ServiceCard('Images/loan.png', 'Loan Calculator'),
                     onTap: () {
                       setState(() {
-                        Navigator.of(context).pushNamed('');
+                        Navigator.of(context).pushNamed('/loan_calc');
                       });
                     },
                   ),
@@ -353,8 +353,7 @@ class _UserHomePageState extends State<UserHomePage> {
                     child: ServiceCard('Images/transfer.png', 'Transfer'),
                     onTap: () {
                       setState(() {
-                        Navigator.of(context)
-                            .pushReplacementNamed('/transfer');
+                        Navigator.of(context).pushReplacementNamed('/transfer');
                       });
                     },
                   ),

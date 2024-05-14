@@ -21,7 +21,6 @@ import 'pages/transactions_page.dart';
 import 'pages/chat_bot.dart';
 import 'pages/gas_pay.dart';
 import 'package:firebase_core/firebase_core.dart';
-
 import 'pages/user_home_page.dart';
 
 void main() async {

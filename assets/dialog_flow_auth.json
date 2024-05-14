@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "first-scsr",
+  "private_key_id": "57d4ad33fe46f5026cba1e3cefeb31998a28058a",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCKgt1t8Aw5Db3P\nzLVZ0z9cac4Tvrr9u8S8u7pLloIS8+IIEQo6/M4uYBbkwk2XSksAzyBxZfGSBDVA\nJ/hnxpYUCBfLJK1iMOVrmTDWG5n8rAniB4tCs9Bkv2jpvIwsEOdxBtKkVv6O7G9T\nQoSrSynE/+uf1I25vfSTPVcpLdNNYd2ywIFFmqgI+YstC5C3ha1CyYttjAB/d8by\n+nw6R97DXIEbljp6oBDbKbOsoPzdAF2QWu/vrGkXS3waIkYdLGxpooFdYHfWK0AJ\nZI61kRENUKAtezaZbANMo73n7cM7YOnAjgn4ZSAwmNcDQQSP7AXb9ExbiwFkT9y6\nyFcJ8CB1AgMBAAECggEAD8jXDBrBgdT3jxFAj3J783+ZPPXM4HJ/+pQYKFoIC7ng\nRdQPSuaZZn6LzVj5N6b/QiHYjCO2clHpcZy8ebMPUkwTzhIpchmpY2grQRMXKsy+\nOZRrgdf1BS4s+goDHVh1z5Mb+R9y1f3Kt/3KGa0wnuMdSnMSDZtAnnDsmGRBAr3b\n9ZD2meILwRN8jPL/ELies9S4I7hpqvnqte6S6e74/4lOJU2tAZPMSZZFJpGEiJDH\n0dyYeX3LaTSs05oJgaGAMPzxGZOx+QOYIdY3v3faVH5DhFLoLcA8i+pXdC6s5KSy\nGQcZ36Ff1mcb+fRG0hVyIexcD/iZwciOjMwGNj28JwKBgQC/o3s6IOhBd0j6K9Tl\n7I0CsO7JSu/Y1aNjfIXHmivO1o7m0pHH/WbdknbOxrgSCK6heWcwzAvLwIK2FMdL\nPuoED4YX3EI7JNKbEiBxke8kmzeUXLByr+1tGAEAFt14nnqsXqdqFvXr94OxsVLa\nGSDjubERms49+Lg9vWSINPdwOwKBgQC5B6WF13/WQesOaRJ4Rx4MXVPGfZAgn4sm\nD2Q00oBKlx3bUpqfYjydlPJZtBlhxMxMEQrNwWWGHboM4TbzaDmsSjxsklCxCjU2\nu4I9D+cIl7bF1eKE9NfaDWRcfEY5ZQ8BHYLHNLPczm48kzPpJ0c1sYq/5Eb+8mCC\nRTuIJJ3XDwKBgQC5DPANLYGY1crOaEzoyQdRNfEexxHb3FAt3SyBlcn/rQfItES5\nTWRrSOcYvKM6JtAadNTENgSd94NAt8fKTTJEQYlGuRXrbp8/xr01banzOz7sMKTh\n2if2VFuC7pFlzALBN5WJyCoodZXhnE1Y9TLhM4pcaZQGG4otdBkDvcHByQKBgGbf\nRnrsfonMKnjfmEJBIAa12L8RzpEkwwONKSRpKKTP8eyft5IH1zWxuzB+fmIqPX/J\nNd2BugVf/7HrgVbBStdsir2+d5iG2WEtzVJPxh6z4w2JRiCv1FbKfVMiURTWCAqR\nssU4mwuXxhhtqz3k9aV3qXHY5FQYw+mJvniKCyunAoGAIf7FojOLaZ5yufKAfbMo\ncsUISrH1zdYwjUsCtMeULZtYMaRMsV0B7xrOlCxMzDhLOaXHkyOY7YQNI4TZHPtq\nzTwiQe2ZXVEUeFG6MMicJ1VNoh2qqGtMQxHLD4Bk/bKILdd7dW1S4SDyXoOOxMgU\nW9TsV91SJVccorSBs/ROREk=\n-----END PRIVATE KEY-----\n",
+  "client_email": "banking-chatbot@first-scsr.iam.gserviceaccount.com",
+  "client_id": "100447505411383303182",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/banking-chatbot%40first-scsr.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

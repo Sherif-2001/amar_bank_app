@@ -1,0 +1,215 @@
+import 'package:flutter/material.dart'; 
+  
+void main() { 
+  runApp(const MyApp()); 
+} 
+  
+class MyApp extends StatelessWidget { 
+  const MyApp({Key? key}) : super(key: key); 
+  @override 
+  Widget build(BuildContext context) { 
+    return MaterialApp( 
+      title: 'Flutter DropDownButton', 
+      theme: ThemeData( 
+        primarySwatch: Colors.green, 
+      ), 
+      home: const MyHomePage(), 
+      debugShowCheckedModeBanner: false, 
+    ); 
+  } 
+} 
+  
+class MyHomePage extends StatefulWidget { 
+  const MyHomePage({Key? key}) : super(key: key); 
+  
+  @override 
+  _MyHomePageState createState() => _MyHomePageState(); 
+} 
+  
+class _MyHomePageState extends State<MyHomePage> { 
+    
+  // Initial Selected Value 
+  String dropdownvalue = 'Item 1';    
+  
+  // List of items in our dropdown menu 
+  var items = [     
+    'Item 1', 
+    'Item 2', 
+    'Item 3', 
+    'Item 4', 
+    'Item 5', 
+  ]; 
+  @override 
+  Widget build(BuildContext context) { 
+    return Scaffold( 
+      appBar: AppBar( 
+        title: const Text("Geeksforgeeks"), 
+      ), 
+      body: Center( 
+        child: Column( 
+          mainAxisAlignment: MainAxisAlignment.center, 
+          children: [ 
+            DropdownButton( 
+                
+              // Initial Value 
+              value: dropdownvalue, 
+                
+              // Down Arrow Icon 
+              icon: const Icon(Icons.keyboard_arrow_down),     
+                
+              // Array list of items 
+              items: items.map((String items) { 
+                return DropdownMenuItem( 
+                  value: items, 
+                  child: Text(items), 
+                ); 
+              }).toList(), 
+              // After selecting the desired option,it will 
+              // change button value to selected value 
+              onChanged: (String? newValue) {  
+                setState(() { 
+                  dropdownvalue = newValue!; 
+                }); 
+              }, 
+            ), 
+          ], 
+        ), 
+      ), 
+    ); 
+  } 
+} 
+
+
+
+
+
+
+
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+class FAQS extends StatefulWidget {
+  const FAQS({Key? key}) : super(key: key);
+  @override
+  State<FAQS> createState() => _FAQSState();
+}
+class _FAQSState extends State<FAQS> {
+  @override
+  Widget build(BuildContext context) {
+    double screenwidth  = MediaQuery.of(context).size.width;
+    double screenheight = MediaQuery.of(context).size.height;
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('FAQs',style: TextStyle(fontSize: 30,color: Colors.white),),
+        centerTitle: true,
+        backgroundColor: Colors.black,
+      ),
+      body: Container(
+        width: screenwidth,
+        height: screenheight,
+        color: Colors.yellow[100],
+        padding:
+        EdgeInsets.
+        only(top: 30,left: 10,right: 10,bottom:10),
+
+        child: SingleChildScrollView(
+          child:
+
+          Column(children: [
+            Text("FREQUENTLY ASKED QUESTIONS",
+                style:
+                TextStyle(fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                    fontSize: 20
+                )
+            ),SizedBox(height: 80,),
+            Ques_and_ans_templet('How can I open a new bank account ?', 'To open a new bank account, you can visit your nearest bank branch and speak to - a customer service representitave he will guide you through the account opening process and provide you with the necessary forms and requirements'),
+            Ques_and_ans_templet('What documents do I need to provide to open a bank account ?', 'we will add answer herewe will add answer here we will add answer here we will add answer here we will add answer here we will add answer here we will add answer here we will add answer here we will add answer here we will add answer here we will add answer here '),
+            Ques_and_ans_templet('What types of accounts does the bank offer ?', 'we will add answer herewe will add answer here we will add answer here we will add answer here we will add answer here we will add answer here '),
+            Ques_and_ans_templet('How can I apply for a loan ?', 'we will add answer here we will add answer here we will add answer here '),
+            Ques_and_ans_templet('What are the interest rates for different types of accounts and loans ?', 'we will add answer here we will add answer here we will add answer here we will add answer here we will add answer here '),
+            Ques_and_ans_templet('we will add question here', 'we will add answer here'),
+            Ques_and_ans_templet('we will add question here', 'we will add answer here we will add answer here we will add answer here we will add answer here we will add answer here we will add answer here we will add answer here we will add answer here we will add answer here'),
+            Ques_and_ans_templet('we will add question here', 'we will add answer here'),
+            Ques_and_ans_templet('we will add question here', 'we will add answer here'),
+          ],)
+
+          ,),
+      ),
+    );
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class Ques_and_ans_templet extends StatelessWidget {
+  @override
+  late String Q,A ;
+  Ques_and_ans_templet(this.Q,this.A);
+  Widget build(BuildContext context) {
+    double screenwidth  = MediaQuery.of(context).size.width;
+    double screenheight = MediaQuery.of(context).size.height;
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 5),
+      decoration: BoxDecoration(
+
+          color: Colors.black,
+          borderRadius: BorderRadius.all(Radius.circular(10))),
+
+      child: Column(
+
+        children: [
+          Row(children: [Container(margin:EdgeInsets.only(left: 10,top: 5)
+              ,child: Text('Q : ${Q}',style: TextStyle(fontSize:20,color: Colors.white,fontWeight: FontWeight.bold),)),],),
+
+          Row(
+            children: [
+              Container(
+                  padding: EdgeInsets.all(7),
+                  decoration: BoxDecoration(
+        boxShadow:
+        [
+          BoxShadow(
+              color: Colors.grey,
+              blurRadius: 8.0
+              ,spreadRadius: 2.0
+          )
+        ],
+        color: Colors.white,
+        borderRadius: BorderRadius.all(Radius.circular(10))),
+                  width: screenwidth/1.1,
+                  margin: EdgeInsets.only(left: 10,bottom: 10,top: 10)
+                  ,child: Column(
+                children: [
+                  Column(
+                    children: [
+                      Text(
+                       'Ans : ${A}',
+                        style: TextStyle(fontSize:20,color: Colors.black,fontWeight:FontWeight.bold),),
+                    ],
+                  ),
+                ],
+              )),
+            ],
+          ),
+
+      ],),
+    );
+  }
+}

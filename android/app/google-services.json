@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "889916949654",
+    "project_id": "fluttercourse-985ee",
+    "storage_bucket": "fluttercourse-985ee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:889916949654:android:57994b498d712a807eaeb7",
+        "android_client_info": {
+          "package_name": "com.example.amar_bank"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFFgnBW7kwFy5Z3fOrNvYU3ccQt1VOvJ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:889916949654:android:9c0f1c241309ef557eaeb7",
+        "android_client_info": {
+          "package_name": "com.example.amar_bank_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFFgnBW7kwFy5Z3fOrNvYU3ccQt1VOvJ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

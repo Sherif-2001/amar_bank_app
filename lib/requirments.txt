@@ -1,0 +1,684 @@
+
+
+
+
+
+
+
+
+
+Future<void> _login() async {
+      final cardNumber = _cardNum.text; // Replace with the email entered by the user
+      final snapshot = await FirebaseFirestore.instance
+          .collection('users')
+          .where('CardNumber', isEqualTo: cardNumber)
+          .get();
+
+      if (snapshot.docs.isNotEmpty) {
+        for (final doc in snapshot.docs) {
+          final balance = doc.data()['Balance'];
+          final username = doc.data()['Username'];
+          final date = doc.data()['Expiry Date'];
+          print('User Balance: $balance');
+          print('User Name: $username');
+          print('User Date: $date');
+
+
+          return username;
+          return balance;
+          return date;
+        }
+      } else {
+        print('No users found with the specified email');
+        return null;
+      }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--_________________
+try {
+                              final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+                                email: _email.text,
+                                password: _password.text,
+                              );
+
+                              Navigator.of(context).pushReplacementNamed('/user_home_page');
+                            }
+
+                            on FirebaseAuthException catch (e) {
+                              if (e.code == 'user-not-found') {
+                                AwesomeDialog(
+                                  context : context,
+                                  dialogType : DialogType.error,
+                                  animType: AnimType.rightSlide,
+                                  title: "Incorrect Email" ,
+                                  desc: "No User found for this email , Enter the correct Email",
+                                  btnOkOnPress: (){
+
+                                  } ,
+                                ).show();// Handle invalid email
+                              } else if (e.code == 'wrong-password') {
+                                AwesomeDialog(
+                                  context : context,
+                                  dialogType : DialogType.error,
+                                  animType: AnimType.rightSlide,
+                                  title: "Wrong Password" ,
+                                  desc: "Incorrect password please , enter correct password or click forget password",
+                                  btnOkOnPress: (){
+
+                                  } ,
+                                ).show();
+                                // Handle wrong password
+                              } else {
+                                print('Sign-in failed: ${e.message}');
+                              }
+                            } catch (e) {
+                              print('Sign-in failed: $e');
+                            }
+                          }
+
+
+
+
+
+
+_____________________________________________________________________________
+elec , gas and water companies :
+
+
+String selectedValue;
+List<String> dropDownOptionsElec = [Canal Electricity , Middle Egypt Electricity , North Delta Electricity , South Delta Electricity , Upper Egypt Electricity , South Cairo Electricity , Alex Electricity , Beheira Electricity];
+List<String> dropDownOptions = [TAQA GAS , NATGAS , Petrotrade , Gastec , Master Gas , Car Gas];
+List<String> dropDownOptions = [Giza Water Company , Red Sea Company , Matrouh Water , AlexWater , Cairo Water , Beni Suef Water Company , Sohag Water , Urban Communities , Mounofia Water , Suez Canal Authority , Sinai Water , Beheira Water ,Obour City Water , 6th October City Water Company , New Cairo Water Company , Qalyubia Water Company , Sharqeya Water Company , Minya Water Company , New Minya Water , Damitte Water Company , Company Water and Sanitation , Borg El Arab City Authority , Fayoum Drinking Water and Sanitation];
+
+-------------------
+
+import 'package:flutter/material.dart';
+
+class Gas_Pay extends StatefulWidget {
+  const Gas_Pay({Key? key}) : super(key: key);
+  @override
+  State<Gas_Pay> createState() => _Gas_PayState();
+}
+
+class _Gas_PayState extends State<Gas_Pay> {
+  String dropdownvalue = 'one';
+  @override
+  Widget build(BuildContext context) {
+    double screenwidth = MediaQuery.of(context).size.width;
+    double screenheight = MediaQuery.of(context).size.height;
+
+    return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.black,
+          title: const Text(
+            'Gas Payment',
+            style: TextStyle(
+              fontSize: 30,
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          centerTitle: true,
+        ),
+        body: Container(
+            color: Colors.yellow[100],
+            width: screenwidth,
+            height: screenheight,
+            padding: const EdgeInsets.all(10),
+            child: SingleChildScrollView(
+              child: Column(children: [
+                Container(
+                  width: screenwidth / 1.2,
+                  height: screenheight / 2.5,
+                  child: Image.asset("Images/gas.png"),
+                ),
+                Container(
+                  decoration: const BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.grey,
+                            blurRadius: 8.0,
+                            spreadRadius: 2.0)
+                      ],
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                  margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+                  child: Card(
+                    child: Container(
+                      width: screenwidth / 1.1,
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            const Text('gas bills companies'),
+                            DropdownButton<String>(
+                              value: chosenValue,
+                              dropdownColor: Colors.yellow[100],
+                              
+                              icon: const Icon(Icons.keyboard_arrow_down),
+                              style: const TextStyle(color: Colors.black),
+                              underline: Container(
+                                height: 2,
+                                color: Colors.blue,
+                              ),
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  dropdownvalue = newValue!;
+                                });
+                              },
+                              items: <String> [
+                                'one',
+                                'two',
+                                'three',
+                          
+                              ].map<DropdownMenuItem<String>>((String value){
+
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
+                  decoration: const BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.grey,
+                            blurRadius: 8.0,
+                            spreadRadius: 2.0)
+                      ],
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                  margin: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+                  child: Card(
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      child: TextFormField(
+                        cursorColor: Colors.grey,
+                        keyboardType: TextInputType.number,
+                        maxLength: 5,
+                        decoration: InputDecoration(
+                          floatingLabelStyle: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold),
+                          hintStyle: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 20) //ممكن ادي الملاحظة لون ,
+                          ,
+                          labelText:
+                              "CLIENT NUMBER" //ده عنوان ومش بيختفي لما اختار الحقل
+                          ,
+                          labelStyle: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 20,
+                              fontWeight:
+                                  FontWeight.bold) //و فيه كمان لون للعنوان
+                          ,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                InkWell(
+                  child: Container(
+                    margin: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                    decoration: const BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.grey,
+                              blurRadius: 8.0,
+                              spreadRadius: 2.0)
+                        ],
+                        color: Colors.black,
+                        borderRadius: BorderRadius.all(Radius.circular(6))),
+                    child: Center(
+                        child: Text("Show Bill",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 25,
+                                fontWeight: FontWeight.bold))),
+                    height: 60,
+                  ),
+                  onTap: () {
+                    //اكشن زرار ال show bill
+                    setState(() {
+                      Navigator.pushReplacementNamed(context, '/gas_bill');
+                    });
+                  },
+                ),
+              ]),
+            )));
+  }
+}
+
+class Gas_Bill extends StatefulWidget {
+  const Gas_Bill({Key? key}) : super(key: key);
+
+  @override
+  State<Gas_Bill> createState() => _Gas_BillState();
+}
+
+class _Gas_BillState extends State<Gas_Bill> {
+  @override
+  Widget build(BuildContext context) {
+    double screenwidth = MediaQuery.of(context).size.width;
+    double screenheight = MediaQuery.of(context).size.height;
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        title: Text(
+          'Gas Bill',
+          style: TextStyle(
+            fontSize: 30,
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        centerTitle: true,
+      ),
+      body: Container(
+        color: Colors.yellow[100],
+        width: screenwidth,
+        height: screenheight,
+        padding: EdgeInsets.all(10),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Const_And_Value_Templet('CONSUMER NAME', 'Mohame ahmed abd elaziz'),
+            Const_And_Value_Templet('AREA', 'south of ash sharqa'),
+            Const_And_Value_Templet('CLIENT NUMBER', '99995'),
+            Const_And_Value_Templet('BILL VALUE', '115'),
+            InkWell(
+              child: Container(
+                margin: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                decoration: const BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.grey,
+                          blurRadius: 8.0,
+                          spreadRadius: 2.0)
+                    ],
+                    color: Colors.black,
+                    borderRadius: BorderRadius.all(Radius.circular(6))),
+                child: Center(
+                    child: Text("Pay",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold))),
+                height: 60,
+              ),
+              onTap: () {
+                //اكشن زرار ال continue
+                setState(() {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                            backgroundColor: Colors.yellow[100],
+                            title: Center(
+                                child: Text(
+                                    "Are you sure that you want to pay this bill")),
+                            content: MaterialButton(
+                              color: Colors.black,
+                              onPressed: () {
+                                showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return AlertDialog(
+                                        backgroundColor: Colors.yellow[100],
+                                        title: Center(
+                                            child:
+                                                Text('Successful Transaction')),
+                                        content: MaterialButton(
+                                          color: Colors.black,
+                                          onPressed: () {
+                                            Navigator.pushNamed(
+                                                context, '/user_home_page');
+                                          },
+                                          child: Text(
+                                            'OK',
+                                            style: TextStyle(
+                                                fontSize: 20,
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                      );
+                                    });
+                              },
+                              child: Text(
+                                'yes',
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.white),
+                              ),
+                            ));
+                      });
+                });
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class Const_And_Value_Templet extends StatelessWidget {
+  @override
+  late String Const, Value;
+  Const_And_Value_Templet(this.Const, this.Value);
+  Widget build(BuildContext context) {
+    double screenwidth = MediaQuery.of(context).size.width;
+    double screenheight = MediaQuery.of(context).size.height;
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 5),
+      decoration: BoxDecoration(
+          color: Colors.black,
+          borderRadius: BorderRadius.all(Radius.circular(20))),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                  margin: EdgeInsets.only(left: 10, top: 5),
+                  child: Text(
+                    '${Const}',
+                    style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold),
+                  )),
+            ],
+          ),
+          Row(
+            children: [
+              Container(
+                  padding: EdgeInsets.all(7),
+                  decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.grey,
+                            blurRadius: 8.0,
+                            spreadRadius: 2.0)
+                      ],
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                  width: screenwidth / 1.1,
+                  margin: EdgeInsets.only(left: 10, bottom: 10, top: 10),
+                  child: Column(
+                    children: [
+                      Text(
+                        '${Value}',
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  )),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class Table extends StatelessWidget {
+  late int x, y, z, v, d;
+  late int demand;
+
+  Table(this.x, this.z, this.y, this.v, this.d);
+  @override
+  Widget build(BuildContext context) {
+    double screenwidth = MediaQuery.of(context).size.width;
+    double screenheight = MediaQuery.of(context).size.height;
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 5),
+      decoration: BoxDecoration(
+          color: Colors.black,
+          borderRadius: BorderRadius.all(Radius.circular(20))),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Column(
+                children: [
+                  Container(
+                      padding: EdgeInsets.all(7),
+                      decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey,
+                                blurRadius: 8.0,
+                                spreadRadius: 2.0)
+                          ],
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      width: screenwidth / 2.3,
+                      margin: EdgeInsets.only(left: 10, bottom: 10, top: 10),
+                      child: Column(
+                        children: [
+                          Text(
+                            'consumption',
+                            style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      )),
+                  Container(
+                      padding: EdgeInsets.all(7),
+                      decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey,
+                                blurRadius: 8.0,
+                                spreadRadius: 2.0)
+                          ],
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      width: screenwidth / 2.3,
+                      margin: EdgeInsets.only(left: 10, bottom: 10, top: 10),
+                      child: Column(
+                        children: const [
+                          Text(
+                            'stamp duty',
+                            style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      )),
+                  Container(
+                      padding: EdgeInsets.all(7),
+                      decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey,
+                                blurRadius: 8.0,
+                                spreadRadius: 2.0)
+                          ],
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      width: screenwidth / 2.3,
+                      margin: EdgeInsets.only(left: 10, bottom: 10, top: 10),
+                      child: Column(
+                        children: [
+                          Text(
+                            'customer srvice',
+                            style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      )),
+                  Container(
+                      padding: EdgeInsets.all(7),
+                      decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey,
+                                blurRadius: 8.0,
+                                spreadRadius: 2.0)
+                          ],
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      width: screenwidth / 2.3,
+                      margin: EdgeInsets.only(left: 10, bottom: 10, top: 10),
+                      child: Column(
+                        children: [
+                          Text(
+                            'cleanin fees',
+                            style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      )),
+                ],
+              ),
+              Column(
+                children: [
+                  Container(
+                      padding: EdgeInsets.all(7),
+                      decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey,
+                                blurRadius: 8.0,
+                                spreadRadius: 2.0)
+                          ],
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      width: screenwidth / 2.3,
+                      margin: EdgeInsets.only(left: 10, bottom: 10, top: 10),
+                      child: Column(
+                        children: [
+                          Text(
+                            '${x}',
+                            style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      )),
+                  Container(
+                      padding: EdgeInsets.all(7),
+                      decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey,
+                                blurRadius: 8.0,
+                                spreadRadius: 2.0)
+                          ],
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      width: screenwidth / 2.3,
+                      margin: EdgeInsets.only(left: 10, bottom: 10, top: 10),
+                      child: Column(
+                        children: [
+                          Text(
+                            '${y}',
+                            style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      )),
+                  Container(
+                      padding: EdgeInsets.all(7),
+                      decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey,
+                                blurRadius: 8.0,
+                                spreadRadius: 2.0)
+                          ],
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      width: screenwidth / 2.3,
+                      margin: EdgeInsets.only(left: 10, bottom: 10, top: 10),
+                      child: Column(
+                        children: [
+                          Text(
+                            '${z}',
+                            style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      )),
+                  Container(
+                      padding: EdgeInsets.all(7),
+                      decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey,
+                                blurRadius: 8.0,
+                                spreadRadius: 2.0)
+                          ],
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      width: screenwidth / 2.3,
+                      margin: EdgeInsets.only(left: 10, bottom: 10, top: 10),
+                      child: Column(
+                        children: [
+                          Text(
+                            '${v}',
+                            style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      )),
+                ],
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                margin: EdgeInsets.symmetric(vertical: 10),
+                child: Text('demand : ${demand = x + y + z + v + d}',
+                    style: TextStyle(
+                      fontSize: 30,
+                      color: Colors.white,
+                    )),
+              )
+            ],
+          )
+        ],
+      ),
+    );
+  }
+}

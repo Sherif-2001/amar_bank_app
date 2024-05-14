@@ -17,7 +17,7 @@ import 'pages/loan_calc.dart';
 import 'pages/TEST_PAGEEEEEEEE.dart';
 import 'pages/product.dart';
 import 'pages/start_page.dart';
-import 'pages/transactions.dart';
+import 'pages/transactions_page.dart';
 import 'pages/chat_bot.dart';
 import 'pages/gas_pay.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -59,7 +59,7 @@ class MyApp extends StatelessWidget {
         '/water_pay': (context) => const WaterPay(),
         '/aftr-log-prod': (context) => const AfterLogProducts(),
         '/transfer': (context) => const TransferPage(),
-        '/transactions': (context) => const Transactions(),
+        '/transactions': (context) => const TransactionsPage(),
         'test': (context) => const test()
       },
     );

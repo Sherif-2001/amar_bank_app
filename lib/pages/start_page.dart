@@ -1,4 +1,5 @@
 import 'package:amar_bank_app/services/auth.dart';
+import 'package:amar_bank_app/services/database_helper.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,6 @@ class _StartPageState extends State<StartPage> {
     try {
       await Auth().signInWithCardNumAndPassword(
           cardNum: _cardNumController.text, password: _passwordController.text);
-      await Navigator.of(context).pushReplacementNamed("/user_home_page");
     } on FirebaseAuthException catch (e) {
       print(e.message);
       if (e.code == 'user-not-found') {
@@ -254,9 +254,15 @@ class _StartPageState extends State<StartPage> {
                                   fontSize: 25,
                                   fontWeight: FontWeight.bold))),
                     ),
-                    onTap: () {
+                    onTap: () async {
                       if (_formKey.currentState!.validate()) {
-                        signInWithCardNumAndPassword();
+                        final isUserExists = await DatabaseHelper()
+                            .getUserDataByCardNum(_cardNumController.text);
+                        if (isUserExists.email.isNotEmpty) {
+                          await signInWithCardNumAndPassword();
+                          await Navigator.of(context)
+                              .pushReplacementNamed("/user_home_page");
+                        }
                       }
                     }),
                 Row(

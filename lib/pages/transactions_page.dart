@@ -1,4 +1,5 @@
 import 'package:amar_bank_app/services/database_helper.dart';
+import 'package:amar_bank_app/widgets/product_card.dart';
 import 'package:amar_bank_app/widgets/transfer_card.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -76,7 +77,7 @@ class _TransactionsPageState extends State<TransactionsPage> {
               itemCount: snapshot.data!.products.length,
               itemBuilder: (context, index) {
                 final currentTransfer = snapshot.data!.products[index];
-                return TransferCard(
+                return ProductCard(
                   currentTransfer.amountOfMoney.toString(),
                   currentTransfer.nameOfProduct,
                   currentTransfer.type,
@@ -124,11 +125,12 @@ class _TransactionsPageState extends State<TransactionsPage> {
         },
         items: const [
           BottomNavigationBarItem(
-              label: "Transfers",
-              icon: Image(
-                image: AssetImage("Images/transfer.png"),
-                width: 40,
-              )),
+            label: "Transfers",
+            icon: Image(
+              image: AssetImage("Images/transfer.png"),
+              width: 40,
+            ),
+          ),
           BottomNavigationBarItem(
             label: "Products",
             icon: Image(

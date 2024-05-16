@@ -1,15 +1,17 @@
 import 'package:amar_bank_app/services/auth.dart';
+import 'package:amar_bank_app/services/database_helper.dart';
 import 'package:amar_bank_app/widgets/apply_product_button.dart';
 import 'package:flutter/material.dart';
 
 class CertCard extends StatefulWidget {
-  final String t; //title
-  final int min; //minimum
+  final String title; //title
+  final int minimumAmount; //minimum
   final double r; // rate
   final String y; // type
   final String te; // tenor
   final String ren; // renew
-  const CertCard(this.t, this.min, this.r, this.y, this.te, this.ren,
+  const CertCard(
+      this.title, this.minimumAmount, this.r, this.y, this.te, this.ren,
       {super.key});
 
   @override
@@ -44,14 +46,14 @@ class _CertCardState extends State<CertCard> {
                     children: [
                       Row(
                         children: [
-                          Text(widget.t,
+                          Text(widget.title,
                               style: const TextStyle(
                                   color: Colors.black, fontSize: 30)),
                         ],
                       ),
                       Row(
                         children: [
-                          Text('Minimum Amount: EGP ${widget.min}',
+                          Text('Minimum Amount: EGP ${widget.minimumAmount}',
                               style: const TextStyle(
                                   color: Colors.grey, fontSize: 20)),
                         ],
@@ -104,10 +106,90 @@ class _CertCardState extends State<CertCard> {
               Auth().currentUser != null
                   ? InkWell(
                       child: const ApplyButton(),
-                      onTap: () {
-                        setState(() {
-                          //اكشن زرار التقديم علي account
-                        });
+                      onTap: () async {
+                        final data =
+                            await DatabaseHelper().getCurrentUserData();
+                        if (data.balance < widget.minimumAmount) {
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                backgroundColor: Colors.yellow[100],
+                                title: const Center(
+                                    child: FittedBox(
+                                        child:
+                                            Text('Your Balance Not Enough'))),
+                                content: MaterialButton(
+                                  color: Colors.black,
+                                  onPressed: () async {
+                                    Navigator.pop(context);
+                                  },
+                                  child: const Text(
+                                    'OK',
+                                    style: TextStyle(
+                                        fontSize: 20, color: Colors.white),
+                                  ),
+                                ),
+                              );
+                            },
+                          );
+                        } else {
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                backgroundColor: Colors.yellow[100],
+                                title: Center(
+                                    child: Text(
+                                        "Are you sure that you want to apply for ${widget.title} with minimum amount of ${widget.minimumAmount} EGP?")),
+                                content: MaterialButton(
+                                  color: Colors.black,
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return AlertDialog(
+                                          backgroundColor: Colors.yellow[100],
+                                          title: const Center(
+                                              child: Text(
+                                                  'Successful Application')),
+                                          content: MaterialButton(
+                                            color: Colors.black,
+                                            onPressed: () async {
+                                              await DatabaseHelper()
+                                                  .applyForProduct(
+                                                      widget.minimumAmount,
+                                                      "Certification",
+                                                      widget.title);
+                                              while (
+                                                  Navigator.canPop(context)) {
+                                                Navigator.pop(context);
+                                              }
+                                              Navigator.pushReplacementNamed(
+                                                  context, "/user_home_page");
+                                            },
+                                            child: const Text(
+                                              'OK',
+                                              style: TextStyle(
+                                                  fontSize: 20,
+                                                  color: Colors.white),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  },
+                                  child: const Text(
+                                    'yes',
+                                    style: TextStyle(
+                                        fontSize: 20, color: Colors.white),
+                                  ),
+                                ),
+                              );
+                            },
+                          );
+                        }
                       },
                     )
                   : Container()

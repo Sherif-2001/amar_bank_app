@@ -339,7 +339,7 @@ class _UserHomePageState extends State<UserHomePage> {
                     child: const ServiceCard('Images/product.png', 'Products'),
                     onTap: () {
                       setState(() {
-                        Navigator.of(context).pushNamed('/product');
+                        Navigator.of(context).pushReplacementNamed('/product');
                       });
                     },
                   ),

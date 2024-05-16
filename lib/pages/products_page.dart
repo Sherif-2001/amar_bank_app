@@ -42,9 +42,9 @@ class _ProductsPageState extends State<ProductsPage> {
           const AccCard("Current Account", 5000, 8.34, 10.44,
               "Monthly,Quarterly,Annually", "Not available"),
           const AccCard("Current with daily interest", 50000, 8.34, 10.44,
-              "Monthly,Quarterly,Annually", "available"),
+              "Monthly,Quarterly,Annually", "Available"),
           const AccCard("Saving account", 100000, 8.34, 10.44,
-              "Monthly,Quarterly,Annually", "available"),
+              "Monthly,Quarterly,Annually", "Available"),
           (Auth().currentUser == null
               ? const ButtonLoginToApply()
               : Container()) //الزراراللي بينقل علي صفحةال start

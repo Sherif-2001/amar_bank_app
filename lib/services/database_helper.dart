@@ -1,4 +1,5 @@
 import 'package:amar_bank_app/models/exchange_rate.dart';
+import 'package:amar_bank_app/models/product.dart';
 import 'package:amar_bank_app/models/transfer.dart';
 import 'package:amar_bank_app/models/user_data.dart';
 import 'package:amar_bank_app/services/auth.dart';
@@ -102,7 +103,6 @@ class DatabaseHelper {
 
       final List<Transfer> senderUpdatedTransitions = senderUserData.transfers;
       senderUpdatedTransitions.add(transferOperation);
-      print(senderUpdatedTransitions);
 
       await senderUserDoc.update({
         "Transfers":
@@ -118,5 +118,26 @@ class DatabaseHelper {
             receiverUpdatedTransitions.map((item) => item.toJson()).toList()
       });
     }
+  }
+
+  Future<void> applyForProduct(
+      int amountOfMoney, String type, String nameOfProduct) async {
+    final userData = await getCurrentUserData();
+    DocumentReference userDoc =
+        FirebaseFirestore.instance.collection("Users").doc(userData.cardNum);
+
+    final transferOperation = Product(
+        amountOfMoney: amountOfMoney.toString(),
+        type: type,
+        nameOfProduct: nameOfProduct,
+        time: Timestamp.now());
+
+    final List<Product> updatedProducts = userData.products;
+    updatedProducts.add(transferOperation);
+
+    await payBill(amountOfMoney);
+
+    await userDoc.update(
+        {"Products": updatedProducts.map((item) => item.toJson()).toList()});
   }
 }

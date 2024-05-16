@@ -1,3 +1,5 @@
+import 'package:amar_bank_app/services/auth.dart';
+import 'package:amar_bank_app/widgets/apply_product_button.dart';
 import 'package:flutter/material.dart';
 
 class CertCard extends StatefulWidget {
@@ -28,7 +30,7 @@ class _CertCardState extends State<CertCard> {
           borderRadius: BorderRadius.all(Radius.circular(10))),
       margin: const EdgeInsets.only(left: 10, right: 10, bottom: 20),
       width: screenwidth,
-      height: screenheight / 3,
+      // height: screenheight / 3,
       child: Card(
         color: Colors.yellow[100],
         child: Container(
@@ -98,7 +100,17 @@ class _CertCardState extends State<CertCard> {
                     )
                   ],
                 ),
-              )
+              ),
+              Auth().currentUser != null
+                  ? InkWell(
+                      child: const ApplyButton(),
+                      onTap: () {
+                        setState(() {
+                          //اكشن زرار التقديم علي account
+                        });
+                      },
+                    )
+                  : Container()
             ],
           ),
         ),

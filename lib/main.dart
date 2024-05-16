@@ -1,7 +1,6 @@
 //blue[900],yellow[100], title app bar size: 30
 
 import 'package:amar_bank_app/firebase_options.dart';
-import 'package:amar_bank_app/pages/after_log_products.dart';
 import 'package:amar_bank_app/pages/bill_page.dart';
 import 'package:amar_bank_app/pages/electric_pay.dart';
 import 'package:amar_bank_app/pages/registeration_page.dart';
@@ -56,7 +55,6 @@ class MyApp extends StatelessWidget {
         '/elec_bill': (context) => const BillPage(),
         '/gas_pay': (context) => const GasPay(),
         '/water_pay': (context) => const WaterPay(),
-        '/aftr-log-prod': (context) => const AfterLogProducts(),
         '/transfer': (context) => const TransferPage(),
         '/transactions': (context) => const TransactionsPage(),
         'test': (context) => const test()

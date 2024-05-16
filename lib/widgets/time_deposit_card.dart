@@ -1,3 +1,5 @@
+import 'package:amar_bank_app/services/auth.dart';
+import 'package:amar_bank_app/widgets/apply_product_button.dart';
 import 'package:flutter/material.dart';
 
 class TimeDepositCard extends StatefulWidget {
@@ -8,8 +10,8 @@ class TimeDepositCard extends StatefulWidget {
   final String maxPer; // maximumperiod
   final int maxAm; // maximum amount
 
-  const TimeDepositCard(this.t, this.minAm, this.r1, this.r2, this.minPer, this.maxPer,
-      this.maxAm,
+  const TimeDepositCard(this.t, this.minAm, this.r1, this.r2, this.minPer,
+      this.maxPer, this.maxAm,
       {super.key});
 
   @override
@@ -30,7 +32,7 @@ class _TimeDepositCardState extends State<TimeDepositCard> {
           borderRadius: BorderRadius.all(Radius.circular(10))),
       margin: const EdgeInsets.only(left: 10, right: 10, bottom: 20),
       width: screenwidth,
-      height: screenheight / 3,
+      // height: screenheight / 3,
       child: Card(
         color: Colors.yellow[100],
         child: Container(
@@ -108,7 +110,17 @@ class _TimeDepositCardState extends State<TimeDepositCard> {
                     )
                   ],
                 ),
-              )
+              ),
+              Auth().currentUser != null
+                  ? InkWell(
+                      child: const ApplyButton(),
+                      onTap: () {
+                        setState(() {
+                          //اكشن زرار التقديم علي account
+                        });
+                      },
+                    )
+                  : Container()
             ],
           ),
         ),

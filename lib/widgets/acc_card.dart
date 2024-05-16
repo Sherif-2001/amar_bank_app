@@ -1,3 +1,5 @@
+import 'package:amar_bank_app/services/auth.dart';
+import 'package:amar_bank_app/widgets/apply_product_button.dart';
 import 'package:flutter/material.dart';
 
 class AccCard extends StatefulWidget {
@@ -29,7 +31,7 @@ class _AccCardState extends State<AccCard> {
           borderRadius: BorderRadius.all(Radius.circular(10))),
       margin: const EdgeInsets.only(left: 10, right: 10, bottom: 20),
       width: screenwidth,
-      height: screenheight / 3,
+      // height: screenheight / 3,
       child: Card(
         color: Colors.yellow[100],
         child: Container(
@@ -98,12 +100,22 @@ class _AccCardState extends State<AccCard> {
                                 color: Colors.blue, fontSize: 15)),
                         Text(widget.i,
                             style: const TextStyle(
-                                color: Colors.blue, fontSize: 15))
+                                color: Colors.blue, fontSize: 15)),
                       ],
-                    )
+                    ),
                   ],
                 ),
-              )
+              ),
+              Auth().currentUser != null
+                  ? InkWell(
+                      child: const ApplyButton(),
+                      onTap: () {
+                        setState(() {
+                          //اكشن زرار التقديم علي account
+                        });
+                      },
+                    )
+                  : Container()
             ],
           ),
         ),

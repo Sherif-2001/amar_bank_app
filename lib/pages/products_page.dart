@@ -1,3 +1,4 @@
+import 'package:amar_bank_app/services/auth.dart';
 import 'package:amar_bank_app/widgets/acc_card.dart';
 import 'package:amar_bank_app/widgets/button_login_to_apply.dart';
 import 'package:amar_bank_app/widgets/cert_card.dart';
@@ -44,7 +45,9 @@ class _ProductsPageState extends State<ProductsPage> {
               "Monthly,Quarterly,Annually", "available"),
           const AccCard("Saving account", 100000, 8.34, 10.44,
               "Monthly,Quarterly,Annually", "available"),
-          const ButtonLoginToApply() //الزراراللي بينقل علي صفحةال start
+          (Auth().currentUser == null
+              ? const ButtonLoginToApply()
+              : Container()) //الزراراللي بينقل علي صفحةال start
         ])
       ],
     ),
@@ -87,7 +90,9 @@ class _ProductsPageState extends State<ProductsPage> {
             "at the end of tenor"),
         const CertCard("Amar-For-All", 12000, 15.23, "Monthly", "3 Year",
             "at the end of tenor"),
-        const ButtonLoginToApply() //الزراراللي بينقل علي صفحةال start
+        (Auth().currentUser == null
+            ? const ButtonLoginToApply()
+            : Container()) //الزراراللي بينقل علي صفحةال start
       ],
     ),
     //tme deposit page
@@ -122,7 +127,9 @@ class _ProductsPageState extends State<ProductsPage> {
 
       const TimeDepositCard(
           "Time Deposit", 1000, 5.999, 8.324, "7 Days", "---", 1000000),
-      const ButtonLoginToApply() //الزراراللي بينقل علي صفحةال start
+      (Auth().currentUser == null
+          ? const ButtonLoginToApply()
+          : Container()) //الزراراللي بينقل علي صفحةال start
     ]),
   ];
 

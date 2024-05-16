@@ -1,8 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class QuestionAndAnswerTemplate extends StatelessWidget {
-  final String Q, A;
-  const QuestionAndAnswerTemplate(this.Q, this.A, {super.key});
+  final String question, answer;
+  const QuestionAndAnswerTemplate(this.question, this.answer, {super.key});
   @override
   Widget build(BuildContext context) {
     double screenwidth = MediaQuery.of(context).size.width;
@@ -16,15 +18,19 @@ class QuestionAndAnswerTemplate extends StatelessWidget {
         children: [
           Row(
             children: [
-              Container(
-                  margin: const EdgeInsets.only(left: 10, top: 5),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: Text(
-                    'Q : $Q',
+                    'Q: $question',
                     style: const TextStyle(
-                        fontSize: 20,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold),
-                  )),
+                      fontSize: 20,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
           Row(
@@ -47,7 +53,7 @@ class QuestionAndAnswerTemplate extends StatelessWidget {
                     Column(
                       children: [
                         Text(
-                          'Ans : $A',
+                          'Ans : $answer',
                           style: const TextStyle(
                               fontSize: 20,
                               color: Colors.black,

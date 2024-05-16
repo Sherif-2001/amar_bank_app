@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 
 class Table extends StatelessWidget {
   final int x, y, z, v, d;
-  late int demand;
 
-  Table(this.x, this.z, this.y, this.v, this.d, {super.key});
+  const Table(this.x, this.z, this.y, this.v, this.d, {super.key});
   @override
   Widget build(BuildContext context) {
     double screenwidth = MediaQuery.of(context).size.width;
@@ -12,8 +11,11 @@ class Table extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 5),
       decoration: const BoxDecoration(
-          color: Colors.black,
-          borderRadius: BorderRadius.all(Radius.circular(20))),
+        color: Colors.black,
+        borderRadius: BorderRadius.all(
+          Radius.circular(20),
+        ),
+      ),
       child: Column(
         children: [
           Row(
@@ -234,7 +236,7 @@ class Table extends StatelessWidget {
               Container(
                 margin: const EdgeInsets.symmetric(vertical: 10),
                 child: Text(
-                  'demand : ${demand = x + y + z + v + d}',
+                  'demand : ${x + y + z + v + d}',
                   style: const TextStyle(
                     fontSize: 30,
                     color: Colors.white,

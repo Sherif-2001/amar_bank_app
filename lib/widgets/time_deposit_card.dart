@@ -25,11 +25,14 @@ class _TimeDepositCardState extends State<TimeDepositCard> {
     double screenheight = MediaQuery.of(context).size.height;
     return Container(
       decoration: const BoxDecoration(
-          boxShadow: [
-            BoxShadow(color: Colors.black, blurRadius: 8.0, spreadRadius: 2.0)
-          ],
-          color: Colors.white,
-          borderRadius: BorderRadius.all(Radius.circular(10))),
+        boxShadow: [
+          BoxShadow(color: Colors.black, blurRadius: 8.0, spreadRadius: 2.0)
+        ],
+        color: Colors.white,
+        borderRadius: BorderRadius.all(
+          Radius.circular(10),
+        ),
+      ),
       margin: const EdgeInsets.only(left: 10, right: 10, bottom: 20),
       width: screenwidth,
       // height: screenheight / 3,

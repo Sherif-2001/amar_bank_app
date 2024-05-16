@@ -1,18 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class Transaction {
+class Transfer {
   final String senderCardNumber;
   final String receiverCardNumber;
   final int amountOfMoney;
   final Timestamp time;
 
-  Transaction(
+  Transfer(
       {required this.amountOfMoney,
       required this.receiverCardNumber,
       required this.senderCardNumber,
       required this.time});
 
-  factory Transaction.fromJson(Map<String, dynamic> json) => Transaction(
+  factory Transfer.fromJson(Map<String, dynamic> json) => Transfer(
       senderCardNumber: json["SenderCardNumber"],
       receiverCardNumber: json["ReceiverCardNumber"],
       amountOfMoney: json["AmountOfMoney"],

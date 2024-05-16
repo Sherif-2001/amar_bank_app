@@ -1,5 +1,5 @@
 import 'package:amar_bank_app/models/product.dart';
-import 'package:amar_bank_app/models/transaction.dart';
+import 'package:amar_bank_app/models/transfer.dart';
 
 class UserData {
   final String nationalId;
@@ -11,7 +11,7 @@ class UserData {
   final String password;
   final String address;
   final int balance;
-  List<Transaction> transactions;
+  List<Transfer> transfers;
   List<Product> products;
 
   UserData(
@@ -24,7 +24,7 @@ class UserData {
       required this.nationalId,
       required this.password,
       required this.username,
-      this.transactions = const [],
+      this.transfers = const [],
       this.products = const []});
 
   factory UserData.fromJson(Map<String, dynamic> json) => UserData(
@@ -37,8 +37,8 @@ class UserData {
         nationalId: json["NationalId"],
         password: json["Password"],
         username: json["Username"],
-        transactions: (json['Transactions'] as List<dynamic> ?? [])
-            .map((item) => Transaction.fromJson(item))
+        transfers: (json['Transfers'] as List<dynamic> ?? [])
+            .map((item) => Transfer.fromJson(item))
             .toList(),
         products: (json['Products'] as List<dynamic> ?? [])
             .map((item) => Product.fromJson(item))
@@ -55,7 +55,7 @@ class UserData {
         "Address": address,
         "Password": password,
         "Balance": balance,
-        "Transactions": transactions.map((item) => item.toJson()).toList(),
+        "Transfers": transfers.map((item) => item.toJson()).toList(),
         "Products": products.map((item) => item.toJson()).toList()
       };
 }

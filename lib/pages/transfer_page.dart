@@ -10,17 +10,18 @@ class TransferPage extends StatefulWidget {
 }
 
 class _TransferPageState extends State<TransferPage> {
-  final TextEditingController _cardNumController = TextEditingController();
   final TextEditingController _cardPinController = TextEditingController();
   final TextEditingController _amountOfMoneyController =
       TextEditingController();
-  final TextEditingController _otherCardNumController = TextEditingController();
+  final TextEditingController _receiverCardNumController =
+      TextEditingController();
   final TextEditingController _otherNationalIdController =
       TextEditingController();
 
   Future<void> transferMoney() async {
     await DatabaseHelper().transferMoney(
-        int.parse(_amountOfMoneyController.text), _otherCardNumController.text);
+        int.parse(_amountOfMoneyController.text),
+        _receiverCardNumController.text);
   }
 
   @override
@@ -76,56 +77,6 @@ class _TransferPageState extends State<TransferPage> {
                       child: Container(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: TextFormField(
-                          controller: _cardNumController,
-                          cursorColor: Colors.grey,
-                          keyboardType: TextInputType.number,
-                          maxLength: 16,
-                          decoration: const InputDecoration(
-                            floatingLabelStyle: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
-                            hintStyle: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 20) //ممكن ادي الملاحظة لون ,
-                            ,
-                            labelText:
-                                "AMAR BANK CARD NUMBER" //ده عنوان ومش بيختفي لما اختار الحقل
-                            ,
-                            labelStyle: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 20,
-                                fontWeight:
-                                    FontWeight.bold) //و فيه كمان لون للعنوان
-                            , //الايقونة اللي بتظهر في جنب في الحقل
-                            //ممكن بدل prefix اعمل حاجة تعكس مكان ظهور الايقونة في الحقل اسمها suffix
-                          ),
-                          validator: (value) {
-                            if (value!.length < 16) {
-                              return "Incomplete Value";
-                            }
-                            return null;
-                          },
-                        ),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    decoration: const BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                              color: Colors.grey,
-                              blurRadius: 8.0,
-                              spreadRadius: 2.0)
-                        ],
-                        color: Colors.white,
-                        borderRadius: BorderRadius.all(Radius.circular(10))),
-                    margin: const EdgeInsets.symmetric(
-                        vertical: 10, horizontal: 10),
-                    child: Card(
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: TextFormField(
                           controller: _cardPinController,
                           cursorColor: Colors.grey,
                           keyboardType: TextInputType.number,
@@ -140,7 +91,7 @@ class _TransferPageState extends State<TransferPage> {
                                 fontSize: 20) //ممكن ادي الملاحظة لون ,
                             ,
                             labelText:
-                                "CARD PIN" //ده عنوان ومش بيختفي لما اختار الحقل
+                                "Card PIN" //ده عنوان ومش بيختفي لما اختار الحقل
                             ,
                             labelStyle: TextStyle(
                                 color: Colors.grey,
@@ -190,7 +141,7 @@ class _TransferPageState extends State<TransferPage> {
                                 fontSize: 20) //ممكن ادي الملاحظة لون ,
                             ,
                             labelText:
-                                "AMOUNT OF MONEY" //ده عنوان ومش بيختفي لما اختار الحقل
+                                "Amount of Money" //ده عنوان ومش بيختفي لما اختار الحقل
                             ,
                             labelStyle: TextStyle(
                                 color: Colors.grey,
@@ -226,7 +177,7 @@ class _TransferPageState extends State<TransferPage> {
                       child: Container(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: TextFormField(
-                          controller: _otherCardNumController,
+                          controller: _receiverCardNumController,
                           cursorColor: Colors.grey,
                           keyboardType: TextInputType.number,
                           maxLength: 16,
@@ -240,7 +191,7 @@ class _TransferPageState extends State<TransferPage> {
                                 fontSize: 20) //ممكن ادي الملاحظة لون ,
                             ,
                             labelText:
-                                "ANOTHER CARD NUMBER" //ده عنوان ومش بيختفي لما اختار الحقل
+                                "Receiver Card Number" //ده عنوان ومش بيختفي لما اختار الحقل
                             ,
                             labelStyle: TextStyle(
                                 color: Colors.grey,
@@ -280,21 +231,21 @@ class _TransferPageState extends State<TransferPage> {
                           cursorColor: Colors.grey,
                           keyboardType: TextInputType.number,
                           maxLength: 14,
-                          decoration: const InputDecoration(
-                            floatingLabelStyle: TextStyle(
+                          decoration: InputDecoration(
+                            floatingLabelStyle: const TextStyle(
                                 color: Colors.grey,
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold),
-                            hintStyle: TextStyle(
+                            hintStyle: const TextStyle(
                                 color: Colors.grey,
                                 fontSize: 20) //ممكن ادي الملاحظة لون ,
                             ,
-                            labelText:
-                                "NATIONAL ID/PASSPORT NUMPER (for another account owner)" //ده عنوان ومش بيختفي لما اختار الحقل
+                            labelText: "Receiver NATIONAL ID/PASSPORT NUMBER"
+                                .toUpperCase() //ده عنوان ومش بيختفي لما اختار الحقل
                             ,
-                            labelStyle: TextStyle(
+                            labelStyle: const TextStyle(
                                 color: Colors.grey,
-                                fontSize: 12,
+                                fontSize: 15,
                                 fontWeight:
                                     FontWeight.bold) //و فيه كمان لون للعنوان
                             , //الايقونة اللي بتظهر في جنب في الحقل
@@ -331,8 +282,12 @@ class _TransferPageState extends State<TransferPage> {
                                   fontSize: 25,
                                   fontWeight: FontWeight.bold))),
                     ),
-                    onTap: () {
-                      if (!_formKey.currentState!.validate()) return;
+                    onTap: () async {
+                      final isReceiverExists = await DatabaseHelper()
+                          .getUserDataByCardNum(
+                              _receiverCardNumController.text);
+                      if (!_formKey.currentState!.validate() ||
+                          isReceiverExists == null) return;
 
                       //اكشن زرار ال continue
                       setState(

@@ -12,7 +12,7 @@ class ProductsPage extends StatefulWidget {
 }
 
 class _ProductsPageState extends State<ProductsPage> {
-  int selectedindex = 0;
+  int selectedIndex = 0;
   List<Widget> wedPages = [
     //accounts  page
     ListView(
@@ -144,15 +144,15 @@ class _ProductsPageState extends State<ProductsPage> {
           style: TextStyle(color: Colors.black, fontSize: 20),
         ),
       ),
-      body: wedPages.elementAt(selectedindex),
+      body: wedPages.elementAt(selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.yellow[100],
         selectedItemColor: Colors.black,
         unselectedItemColor: Colors.grey,
-        currentIndex: selectedindex,
+        currentIndex: selectedIndex,
         onTap: (index) {
           setState(() {
-            selectedindex = index;
+            selectedIndex = index;
           });
         },
         items: const [

@@ -1,4 +1,5 @@
 import 'package:amar_bank_app/models/exchange_rate.dart';
+import 'package:amar_bank_app/models/transfer.dart';
 import 'package:amar_bank_app/models/user_data.dart';
 import 'package:amar_bank_app/services/auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -68,32 +69,54 @@ class DatabaseHelper {
     documentReference.update({"Balance": FieldValue.increment(-billPrice)});
   }
 
-  Future<void> transferMoney(
-      int amountOfMoney, String userToTransferCardNum) async {
-    final currentUserData = await getCurrentUserData();
+  Future<void> transferMoney(int amountOfMoney, String receiverCardNum) async {
+    final senderUserData = await getCurrentUserData();
+    final receiverUserData = await getUserDataByCardNum(receiverCardNum);
 
     QuerySnapshot querySnapshot =
         await _firebaseFirestore.collection("Users").get();
 
     final userData = querySnapshot.docs.firstWhere((element) =>
         UserData.fromJson(element.data() as Map<String, dynamic>).cardNum ==
-        userToTransferCardNum);
+        receiverCardNum);
 
     if (userData.exists) {
-      DocumentReference currentUserDoc = FirebaseFirestore.instance
+      DocumentReference senderUserDoc = FirebaseFirestore.instance
           .collection("Users")
-          .doc(currentUserData.cardNum);
+          .doc(senderUserData.cardNum);
 
-      DocumentReference otherUserDoc = FirebaseFirestore.instance
-          .collection("Users")
-          .doc(userToTransferCardNum);
+      DocumentReference receiverUserDoc =
+          FirebaseFirestore.instance.collection("Users").doc(receiverCardNum);
 
-      await currentUserDoc
+      // Change the amount of money in both accounts
+      await senderUserDoc
           .update({"Balance": FieldValue.increment(-amountOfMoney)});
-      await otherUserDoc
+      await receiverUserDoc
           .update({"Balance": FieldValue.increment(amountOfMoney)});
 
-      
+      final transferOperation = Transfer(
+          amountOfMoney: amountOfMoney,
+          receiverCardNumber: receiverUserData.cardNum,
+          senderCardNumber: senderUserData.cardNum,
+          time: Timestamp.now());
+
+      final List<Transfer> senderUpdatedTransitions = senderUserData.transfers;
+      senderUpdatedTransitions.add(transferOperation);
+      print(senderUpdatedTransitions);
+
+      await senderUserDoc.update({
+        "Transfers":
+            senderUpdatedTransitions.map((item) => item.toJson()).toList()
+      });
+
+      final List<Transfer> receiverUpdatedTransitions =
+          receiverUserData.transfers;
+      receiverUpdatedTransitions.add(transferOperation);
+
+      await receiverUserDoc.update({
+        "Transfers":
+            receiverUpdatedTransitions.map((item) => item.toJson()).toList()
+      });
     }
   }
 }

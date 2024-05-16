@@ -1,3 +1,4 @@
+import 'package:amar_bank_app/models/company.dart';
 import 'package:amar_bank_app/models/exchange_rate.dart';
 import 'package:amar_bank_app/models/product.dart';
 import 'package:amar_bank_app/models/transfer.dart';
@@ -23,6 +24,19 @@ class DatabaseHelper {
         .map((doc) => ExchangeRate.fromJson(doc.data() as Map<String, dynamic>))
         .toList();
     return currenciesData;
+  }
+
+  Future<List<Company>> getCompaniesData(String companiesType) async {
+    QuerySnapshot querySnapshot = await _firebaseFirestore
+        .collection("Companies")
+        .where("Type", isEqualTo: companiesType)
+        .get();
+
+    final companiesData = querySnapshot.docs
+        .map((doc) => Company.fromJson(doc.data() as Map<String, dynamic>))
+        .toList();
+
+    return companiesData;
   }
 
   Future<bool> isCardNumUserExist(String cardNum) async {

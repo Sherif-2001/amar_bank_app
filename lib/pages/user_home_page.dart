@@ -1,4 +1,5 @@
 import 'package:amar_bank_app/models/user_data.dart';
+import 'package:amar_bank_app/pages/pay_page.dart';
 import 'package:amar_bank_app/services/auth.dart';
 import 'package:amar_bank_app/services/database_helper.dart';
 import 'package:amar_bank_app/widgets/service_card.dart';
@@ -278,26 +279,37 @@ class _UserHomePageState extends State<UserHomePage> {
                     child:
                         const ServiceCard('Images/electricity.png', 'Elec pay'),
                     onTap: () {
-                      setState(() {
-                        Navigator.of(context).pushReplacementNamed('/elec_pay');
-                      });
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (context) => const PayPage(
+                            companyType: "Electricity",
+                          ),
+                        ),
+                      );
                     },
                   ),
                   InkWell(
                     child: const ServiceCard('Images/gas.png', 'Gas pay'),
                     onTap: () {
-                      setState(() {
-                        Navigator.of(context).pushReplacementNamed('/gas_pay');
-                      });
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (context) => const PayPage(
+                            companyType: "Gas",
+                          ),
+                        ),
+                      );
                     },
                   ),
                   InkWell(
                     child: const ServiceCard('Images/water.png', 'Water pay'),
                     onTap: () {
-                      setState(() {
-                        Navigator.of(context)
-                            .pushReplacementNamed('/water_pay');
-                      });
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (context) => const PayPage(
+                            companyType: "Water",
+                          ),
+                        ),
+                      );
                     },
                   ),
                 ],

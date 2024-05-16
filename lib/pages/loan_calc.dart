@@ -141,128 +141,122 @@ class _LoanCalcState extends State<LoanCalc> {
             const SizedBox(
               height: 30,
             ),
-            Container(
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text('loan amount start from 5000',
-                          style: TextStyle(fontSize: 15)),
-                      Container(
-                          padding: const EdgeInsets.all(3),
-                          margin: const EdgeInsets.symmetric(horizontal: 5),
-                          decoration: const BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.grey,
-                                    blurRadius: 8.0,
-                                    spreadRadius: 2.0)
-                              ],
-                              color: Colors.white,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(12))),
-                          child: Text("$loanAmount",
-                              style: const TextStyle(fontSize: 30)))
-                    ],
-                  ),
-                  Slider(
-                      activeColor: Colors.black,
-                      inactiveColor: Colors.grey,
-                      min: 5000,
-                      max: 1500000,
-                      divisions: 1495,
-                      value: loanAmount.toDouble(),
-                      onChanged: (value) {
-                        setState(() {
-                          loanAmount = value.toInt();
-                        });
-                      })
-                ],
-              ),
+            Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text('loan amount start from 5000',
+                        style: TextStyle(fontSize: 15)),
+                    Container(
+                        padding: const EdgeInsets.all(3),
+                        margin: const EdgeInsets.symmetric(horizontal: 5),
+                        decoration: const BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.grey,
+                                  blurRadius: 8.0,
+                                  spreadRadius: 2.0)
+                            ],
+                            color: Colors.white,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(12))),
+                        child: Text("$loanAmount",
+                            style: const TextStyle(fontSize: 30)))
+                  ],
+                ),
+                Slider(
+                    activeColor: Colors.black,
+                    inactiveColor: Colors.grey,
+                    min: 5000,
+                    max: 1500000,
+                    divisions: 1495,
+                    value: loanAmount.toDouble(),
+                    onChanged: (value) {
+                      setState(() {
+                        loanAmount = value.toInt();
+                      });
+                    })
+              ],
             ),
-            Container(
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text('loan period start from 6 month',
-                          style: TextStyle(fontSize: 15)),
-                      Container(
-                          padding: const EdgeInsets.all(3),
-                          margin: const EdgeInsets.symmetric(horizontal: 5),
-                          decoration: const BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.grey,
-                                    blurRadius: 8.0,
-                                    spreadRadius: 2.0)
-                              ],
-                              color: Colors.white,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(12))),
-                          child: Text("$loanPeriod",
-                              style: const TextStyle(fontSize: 30)))
-                    ],
-                  ),
-                  Slider(
-                      activeColor: Colors.black,
-                      inactiveColor: Colors.grey,
-                      min: 6,
-                      max: 120,
-                      divisions: 114,
-                      value: loanPeriod.toDouble(),
-                      onChanged: (value) {
-                        setState(() {
-                          loanPeriod = value.toInt();
-                        });
-                      })
-                ],
-              ),
+            Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text('loan period start from 6 month',
+                        style: TextStyle(fontSize: 15)),
+                    Container(
+                        padding: const EdgeInsets.all(3),
+                        margin: const EdgeInsets.symmetric(horizontal: 5),
+                        decoration: const BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.grey,
+                                  blurRadius: 8.0,
+                                  spreadRadius: 2.0)
+                            ],
+                            color: Colors.white,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(12))),
+                        child: Text("$loanPeriod",
+                            style: const TextStyle(fontSize: 30)))
+                  ],
+                ),
+                Slider(
+                    activeColor: Colors.black,
+                    inactiveColor: Colors.grey,
+                    min: 6,
+                    max: 120,
+                    divisions: 114,
+                    value: loanPeriod.toDouble(),
+                    onChanged: (value) {
+                      setState(() {
+                        loanPeriod = value.toInt();
+                      });
+                    })
+              ],
             ),
-            Container(
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text('interest rate start from 21.0 %',
-                          style: TextStyle(fontSize: 15)),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Container(
-                          padding: const EdgeInsets.all(3),
-                          margin: const EdgeInsets.symmetric(horizontal: 5),
-                          decoration: const BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.grey,
-                                    blurRadius: 8.0,
-                                    spreadRadius: 2.0)
-                              ],
-                              color: Colors.white,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(12))),
-                          child: Text("$interestRate %",
-                              style: const TextStyle(fontSize: 30)))
-                    ],
-                  ),
-                  Slider(
-                      activeColor: Colors.black,
-                      inactiveColor: Colors.grey,
-                      min: 21.0,
-                      max: 25.5,
-                      divisions: 6,
-                      value: interestRate,
-                      onChanged: (value) {
-                        setState(() {
-                          interestRate = value;
-                        });
-                      })
-                ],
-              ),
+            Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text('interest rate start from 21.0 %',
+                        style: TextStyle(fontSize: 15)),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Container(
+                        padding: const EdgeInsets.all(3),
+                        margin: const EdgeInsets.symmetric(horizontal: 5),
+                        decoration: const BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.grey,
+                                  blurRadius: 8.0,
+                                  spreadRadius: 2.0)
+                            ],
+                            color: Colors.white,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(12))),
+                        child: Text("$interestRate %",
+                            style: const TextStyle(fontSize: 30)))
+                  ],
+                ),
+                Slider(
+                    activeColor: Colors.black,
+                    inactiveColor: Colors.grey,
+                    min: 21.0,
+                    max: 25.5,
+                    divisions: 6,
+                    value: interestRate,
+                    onChanged: (value) {
+                      setState(() {
+                        interestRate = value;
+                      });
+                    })
+              ],
             ),
             const Text(
                 'The loan calculators are intended to be an estimate guide only,The results should not be considered as a final approval for aloan.To fiend the exact amounts and interest rates,please visit us',

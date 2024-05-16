@@ -275,7 +275,8 @@ class _UserHomePageState extends State<UserHomePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   InkWell(
-                    child: ServiceCard('Images/electricity.png', 'Elec pay'),
+                    child:
+                        const ServiceCard('Images/electricity.png', 'Elec pay'),
                     onTap: () {
                       setState(() {
                         Navigator.of(context).pushReplacementNamed('/elec_pay');
@@ -283,7 +284,7 @@ class _UserHomePageState extends State<UserHomePage> {
                     },
                   ),
                   InkWell(
-                    child: ServiceCard('Images/gas.png', 'Gas pay'),
+                    child: const ServiceCard('Images/gas.png', 'Gas pay'),
                     onTap: () {
                       setState(() {
                         Navigator.of(context).pushReplacementNamed('/gas_pay');
@@ -291,7 +292,7 @@ class _UserHomePageState extends State<UserHomePage> {
                     },
                   ),
                   InkWell(
-                    child: ServiceCard('Images/water.png', 'Water pay'),
+                    child: const ServiceCard('Images/water.png', 'Water pay'),
                     onTap: () {
                       setState(() {
                         Navigator.of(context)
@@ -305,7 +306,7 @@ class _UserHomePageState extends State<UserHomePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   InkWell(
-                    child: ServiceCard('Images/atm.png', 'Branch/ATM'),
+                    child: const ServiceCard('Images/atm.png', 'Branch/ATM'),
                     onTap: () {
                       setState(() {
                         Navigator.of(context).pushNamed('/atm_or_branch');
@@ -313,7 +314,8 @@ class _UserHomePageState extends State<UserHomePage> {
                     },
                   ),
                   InkWell(
-                    child: ServiceCard('Images/money.png', 'Exchange Rate'),
+                    child:
+                        const ServiceCard('Images/money.png', 'Exchange Rate'),
                     onTap: () {
                       setState(() {
                         Navigator.of(context).pushNamed("/currency_rate");
@@ -321,7 +323,7 @@ class _UserHomePageState extends State<UserHomePage> {
                     },
                   ),
                   InkWell(
-                    child: ServiceCard('Images/FAQs.png', 'FAQs'),
+                    child: const ServiceCard('Images/FAQs.png', 'FAQs'),
                     onTap: () {
                       setState(() {
                         Navigator.of(context).pushNamed('/faqs');
@@ -334,7 +336,7 @@ class _UserHomePageState extends State<UserHomePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   InkWell(
-                    child: ServiceCard('Images/product.png', 'Products'),
+                    child: const ServiceCard('Images/product.png', 'Products'),
                     onTap: () {
                       setState(() {
                         Navigator.of(context).pushNamed('/aftr-log-prod');
@@ -342,7 +344,8 @@ class _UserHomePageState extends State<UserHomePage> {
                     },
                   ),
                   InkWell(
-                    child: ServiceCard('Images/loan.png', 'Loan Calculator'),
+                    child:
+                        const ServiceCard('Images/loan.png', 'Loan Calculator'),
                     onTap: () {
                       setState(() {
                         Navigator.of(context).pushNamed('/loan_calc');
@@ -350,7 +353,7 @@ class _UserHomePageState extends State<UserHomePage> {
                     },
                   ),
                   InkWell(
-                    child: ServiceCard('Images/transfer.png', 'Transfer'),
+                    child: const ServiceCard('Images/transfer.png', 'Transfer'),
                     onTap: () {
                       setState(() {
                         Navigator.of(context).pushReplacementNamed('/transfer');

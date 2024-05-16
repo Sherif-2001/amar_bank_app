@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class TransactionCard extends StatelessWidget {
-  late String x, y;
+  final String x, y;
 
-  TransactionCard(this.x, this.y, {super.key});
+  const TransactionCard(this.x, this.y, {super.key});
 
   @override
   Widget build(BuildContext context) {

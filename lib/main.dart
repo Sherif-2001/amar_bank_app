@@ -15,7 +15,7 @@ import 'pages/faqs.dart';
 import 'pages/forget_pass_or_user.dart';
 import 'pages/loan_calc.dart';
 import 'pages/TEST_PAGEEEEEEEE.dart';
-import 'pages/product.dart';
+import 'pages/products_page.dart';
 import 'pages/start_page.dart';
 import 'pages/transactions_page.dart';
 import 'pages/chat_bot.dart';
@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/start': (context) => const StartPage(),
         '/reg_sign_up': (context) => const RegisterationPage(),
-        '/product': (context) => const Product(),
+        '/product': (context) => const ProductsPage(),
         '/faqs': (context) => const FAQS(),
         '/user_home_page': (context) => const UserHomePage(),
         '/atm_or_branch': (context) => const ATMBranch(),

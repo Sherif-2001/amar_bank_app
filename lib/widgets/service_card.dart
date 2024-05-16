@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ServiceCard extends StatelessWidget {
-  late String img, t;
-  ServiceCard(this.img, this.t, {super.key});
+  final String img, t;
+  const ServiceCard(this.img, this.t, {super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -92,6 +92,8 @@ class DatabaseHelper {
           .update({"Balance": FieldValue.increment(-amountOfMoney)});
       await otherUserDoc
           .update({"Balance": FieldValue.increment(amountOfMoney)});
+
+      
     }
   }
 }

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
 class Table extends StatelessWidget {
-  late int x, y, z, v, d;
+  final int x, y, z, v, d;
   late int demand;
 
   Table(this.x, this.z, this.y, this.v, this.d, {super.key});
   @override
   Widget build(BuildContext context) {
     double screenwidth = MediaQuery.of(context).size.width;
-    double screenheight = MediaQuery.of(context).size.height;
+    // double screenheight = MediaQuery.of(context).size.height;
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 5),
       decoration: const BoxDecoration(

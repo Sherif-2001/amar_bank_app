@@ -1,3 +1,4 @@
+import 'package:amar_bank_app/widgets/question_and_answer_template.dart';
 import 'package:flutter/material.dart';
 
 class FAQS extends StatefulWidget {
@@ -26,15 +27,15 @@ class _FAQSState extends State<FAQS> {
         color: Colors.yellow[100],
         padding:
             const EdgeInsets.only(top: 30, left: 10, right: 10, bottom: 10),
-        child: SingleChildScrollView(
+        child: const SingleChildScrollView(
           child: Column(
             children: [
-              const Text("FREQUENTLY ASKED QUESTIONS",
+              Text("FREQUENTLY ASKED QUESTIONS",
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
                       fontSize: 20)),
-              const SizedBox(
+              SizedBox(
                 height: 80,
               ),
               QuestionAndAnswerTemplate('How can I open a new bank account ?',
@@ -65,71 +66,6 @@ class _FAQSState extends State<FAQS> {
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class QuestionAndAnswerTemplate extends StatelessWidget {
-  late String Q, A;
-  QuestionAndAnswerTemplate(this.Q, this.A, {super.key});
-  @override
-  Widget build(BuildContext context) {
-    double screenwidth = MediaQuery.of(context).size.width;
-    double screenheight = MediaQuery.of(context).size.height;
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 5),
-      decoration: const BoxDecoration(
-          color: Colors.black,
-          borderRadius: BorderRadius.all(Radius.circular(10))),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              Container(
-                  margin: const EdgeInsets.only(left: 10, top: 5),
-                  child: Text(
-                    'Q : $Q',
-                    style: const TextStyle(
-                        fontSize: 20,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold),
-                  )),
-            ],
-          ),
-          Row(
-            children: [
-              Container(
-                  padding: const EdgeInsets.all(7),
-                  decoration: const BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                            color: Colors.grey,
-                            blurRadius: 8.0,
-                            spreadRadius: 2.0)
-                      ],
-                      color: Colors.white,
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
-                  width: screenwidth / 1.1,
-                  margin: const EdgeInsets.only(left: 10, bottom: 10, top: 10),
-                  child: Column(
-                    children: [
-                      Column(
-                        children: [
-                          Text(
-                            'Ans : $A',
-                            style: const TextStyle(
-                                fontSize: 20,
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                    ],
-                  )),
-            ],
-          ),
-        ],
       ),
     );
   }

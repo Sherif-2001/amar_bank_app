@@ -21,7 +21,7 @@ class _TransactionsPageState extends State<TransactionsPage> {
         ),
         centerTitle: true,
       ),
-      body: SingleChildScrollView(
+      body: const SingleChildScrollView(
         child: Column(
           children: [
             TransactionCard('Apply on tahia misr certificate', '14/10/2024'),

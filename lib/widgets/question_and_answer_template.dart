@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-class ConstAndValueTemplate extends StatelessWidget {
-  const ConstAndValueTemplate(this.constant, this.value, {super.key});
-
-  final String constant, value;
+class QuestionAndAnswerTemplate extends StatelessWidget {
+  final String Q, A;
+  const QuestionAndAnswerTemplate(this.Q, this.A, {super.key});
   @override
   Widget build(BuildContext context) {
     double screenwidth = MediaQuery.of(context).size.width;
@@ -12,16 +11,15 @@ class ConstAndValueTemplate extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 5),
       decoration: const BoxDecoration(
           color: Colors.black,
-          borderRadius: BorderRadius.all(Radius.circular(20))),
+          borderRadius: BorderRadius.all(Radius.circular(10))),
       child: Column(
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
                   margin: const EdgeInsets.only(left: 10, top: 5),
                   child: Text(
-                    constant,
+                    'Q : $Q',
                     style: const TextStyle(
                         fontSize: 20,
                         color: Colors.white,
@@ -46,12 +44,16 @@ class ConstAndValueTemplate extends StatelessWidget {
                 margin: const EdgeInsets.only(left: 10, bottom: 10, top: 10),
                 child: Column(
                   children: [
-                    Text(
-                      value,
-                      style: const TextStyle(
-                          fontSize: 20,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold),
+                    Column(
+                      children: [
+                        Text(
+                          'Ans : $A',
+                          style: const TextStyle(
+                              fontSize: 20,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ],
                     ),
                   ],
                 ),

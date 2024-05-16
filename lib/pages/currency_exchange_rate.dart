@@ -28,7 +28,7 @@ class _CurrencyExchangeRateState extends State<CurrencyExchangeRate> {
 
   @override
   Widget build(BuildContext context) {
-    double screenwidth = MediaQuery.of(context).size.width;
+    // double screenwidth = MediaQuery.of(context).size.width;
     double screenheight = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Colors.yellow[100],
@@ -92,8 +92,7 @@ class _CurrencyExchangeRateState extends State<CurrencyExchangeRate> {
   // CurrencyCard('GBP.png', 'GBP', "Britch Pound", '31', '32'),
   // CurrencyCard('AED.png', 'AED', "Emirates Dirham", '31', '32'),
   // CurrencyCard('CHF.png', 'CHF', "Swiss Franc", '31', '32'),
-  // CurrencyCard(
-  //     'AUD.png', 'AUD', "Australian Dollar", '31', '32'),
+  // CurrencyCard('AUD.png', 'AUD', "Australian Dollar", '31', '32'),
   // CurrencyCard('BHD.png', 'BHD', "Bahraini Dinar", '31', '32'),
   // CurrencyCard('CAD.png', 'CAD', "Canadian Dollar", '31', '32'),
   // CurrencyCard('CNY.png', 'CNY', "Chinese Yuan", '31', '32'),

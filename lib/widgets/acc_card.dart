@@ -22,8 +22,9 @@ class AccCard extends StatefulWidget {
 }
 
 class _AccCardState extends State<AccCard> {
-  final TextEditingController _controller = TextEditingController();
-  @override
+ final TextEditingController _pinController = TextEditingController();
+  final TextEditingController _numbercontroller = TextEditingController();
+    @override
   Widget build(BuildContext context) {
     double screenwidth = MediaQuery.of(context).size.width;
     double screenheight = MediaQuery.of(context).size.height;
@@ -156,7 +157,7 @@ class _AccCardState extends State<AccCard> {
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 10),
                                     child: TextFormField(
-                                      controller: _controller,
+                                      controller: _pinController,
                                       cursorColor: Colors.grey,
                                       keyboardType: TextInputType.number,
                                       maxLength: 4,
@@ -187,6 +188,46 @@ class _AccCardState extends State<AccCard> {
                                         }
                                         if (value != data.cardPin) {
                                           return "Invalid Card Pin";
+                                        }
+                                        return null;
+                                      },
+                                    ),
+                                  ),
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10),
+                                    child: TextFormField(
+                                      controller: _numbercontroller,
+                                      cursorColor: Colors.grey,
+                                      keyboardType: TextInputType.number,
+                                      maxLength: 16,
+                                      decoration: InputDecoration(
+                                        floatingLabelStyle: const TextStyle(
+                                            color: Colors.grey,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold),
+                                        hintStyle: const TextStyle(
+                                            color: Colors.grey,
+                                            fontSize:
+                                                20) //ممكن ادي الملاحظة لون ,
+                                        ,
+                                        labelText: "Card Number"
+                                            .toUpperCase() //ده عنوان ومش بيختفي لما اختار الحقل
+                                        ,
+                                        labelStyle: const TextStyle(
+                                            color: Colors.grey,
+                                            fontSize: 15,
+                                            fontWeight: FontWeight
+                                                .bold) //و فيه كمان لون للعنوان
+                                        , //الايقونة اللي بتظهر في جنب في الحقل
+                                        //ممكن بدل prefix اعمل حاجة تعكس مكان ظهور الايقونة في الحقل اسمها suffix
+                                      ),
+                                      validator: (value) {
+                                        if (value!.length < 16) {
+                                          return "Incomplete Value";
+                                        }
+                                        if (value != data.cardNum) {
+                                          return "Invalid Card Number";
                                         }
                                         return null;
                                       },

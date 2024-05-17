@@ -3,6 +3,8 @@ import 'package:amar_bank_app/services/database_helper.dart';
 import 'package:amar_bank_app/widgets/apply_product_button.dart';
 import 'package:flutter/material.dart';
 
+final _formKey = GlobalKey<FormState>();
+
 class CertCard extends StatefulWidget {
   final String title; //title
   final int minimumAmount; //minimum
@@ -19,6 +21,8 @@ class CertCard extends StatefulWidget {
 }
 
 class _CertCardState extends State<CertCard> {
+  final TextEditingController _controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     double screenwidth = MediaQuery.of(context).size.width;
@@ -103,96 +107,118 @@ class _CertCardState extends State<CertCard> {
                   ],
                 ),
               ),
-              Auth().currentUser != null
-                  ? InkWell(
-                      child: const ApplyButton(),
-                      onTap: () async {
-                        final data =
-                            await DatabaseHelper().getCurrentUserData();
-                        if (data.balance < widget.minimumAmount) {
-                          showDialog(
-                            context: context,
-                            builder: (context) {
-                              return AlertDialog(
-                                backgroundColor: Colors.yellow[100],
-                                title: const Center(
-                                    child: FittedBox(
-                                        child:
-                                            Text('Your Balance Not Enough'))),
-                                content: MaterialButton(
-                                  color: Colors.black,
-                                  onPressed: () async {
-                                    Navigator.pop(context);
-                                  },
-                                  child: const Text(
-                                    'OK',
-                                    style: TextStyle(
-                                        fontSize: 20, color: Colors.white),
-                                  ),
-                                ),
-                              );
-                            },
+              Visibility(
+                visible: Auth().currentUser != null,
+                child: InkWell(
+                  child: const ApplyButton(),
+                  onTap: () async {
+                    final data = await DatabaseHelper().getCurrentUserData();
+                    if (data.balance < widget.minimumAmount) {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            backgroundColor: Colors.yellow[100],
+                            title: const Center(
+                                child: FittedBox(
+                                    child: Text('Your Balance Not Enough'))),
+                            content: MaterialButton(
+                              color: Colors.black,
+                              onPressed: () async {
+                                Navigator.pop(context);
+                              },
+                              child: const Text(
+                                'OK',
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.white),
+                              ),
+                            ),
                           );
-                        } else {
-                          showDialog(
-                            context: context,
-                            builder: (context) {
-                              return AlertDialog(
-                                backgroundColor: Colors.yellow[100],
-                                title: Center(
-                                    child: Text(
-                                        "Are you sure that you want to apply for ${widget.title} with minimum amount of ${widget.minimumAmount} EGP?")),
-                                content: MaterialButton(
-                                  color: Colors.black,
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                    showDialog(
-                                      context: context,
-                                      builder: (context) {
-                                        return AlertDialog(
-                                          backgroundColor: Colors.yellow[100],
-                                          title: const Center(
-                                              child: Text(
-                                                  'Successful Application')),
-                                          content: MaterialButton(
-                                            color: Colors.black,
-                                            onPressed: () async {
-                                              await DatabaseHelper()
-                                                  .applyForProduct(
-                                                      widget.minimumAmount,
-                                                      "Certification",
-                                                      widget.title);
-                                              while (
-                                                  Navigator.canPop(context)) {
-                                                Navigator.pop(context);
-                                              }
-                                              Navigator.pushReplacementNamed(
-                                                  context, "/user_home_page");
-                                            },
-                                            child: const Text(
-                                              'OK',
-                                              style: TextStyle(
-                                                  fontSize: 20,
-                                                  color: Colors.white),
-                                            ),
-                                          ),
-                                        );
+                        },
+                      );
+                    } else {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            backgroundColor: Colors.yellow[100],
+                            title: Center(child: Text(widget.title)),
+                            content: Form(
+                              key: _formKey,
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10),
+                                    child: TextFormField(
+                                      controller: _controller,
+                                      cursorColor: Colors.grey,
+                                      keyboardType: TextInputType.number,
+                                      maxLength: 4,
+                                      decoration: InputDecoration(
+                                        floatingLabelStyle: const TextStyle(
+                                            color: Colors.grey,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold),
+                                        hintStyle: const TextStyle(
+                                            color: Colors.grey,
+                                            fontSize:
+                                                20) //ممكن ادي الملاحظة لون ,
+                                        ,
+                                        labelText: "Card Pin"
+                                            .toUpperCase() //ده عنوان ومش بيختفي لما اختار الحقل
+                                        ,
+                                        labelStyle: const TextStyle(
+                                            color: Colors.grey,
+                                            fontSize: 15,
+                                            fontWeight: FontWeight
+                                                .bold) //و فيه كمان لون للعنوان
+                                        , //الايقونة اللي بتظهر في جنب في الحقل
+                                        //ممكن بدل prefix اعمل حاجة تعكس مكان ظهور الايقونة في الحقل اسمها suffix
+                                      ),
+                                      validator: (value) {
+                                        if (value!.length < 4) {
+                                          return "Incomplete Value";
+                                        }
+                                        if (value != data.cardPin) {
+                                          return "Invalid Card Pin";
+                                        }
+                                        return null;
                                       },
-                                    );
-                                  },
-                                  child: const Text(
-                                    'yes',
-                                    style: TextStyle(
-                                        fontSize: 20, color: Colors.white),
+                                    ),
                                   ),
-                                ),
-                              );
-                            },
+                                  MaterialButton(
+                                    color: Colors.black,
+                                    onPressed: () async {
+                                      if (_formKey.currentState!.validate()) {
+                                        await DatabaseHelper().applyForProduct(
+                                            widget.minimumAmount,
+                                            "Certification",
+                                            widget.title);
+                                        while (Navigator.canPop(context)) {
+                                          Navigator.pop(context);
+                                        }
+                                        Navigator.pushReplacementNamed(
+                                            context, "/user_home_page");
+                                      }
+                                    },
+                                    child: const Text(
+                                      'Submit',
+                                      style: TextStyle(
+                                          fontSize: 20, color: Colors.white),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                           );
-                        }
-                      },
-                    )
-                  : Container()
+                        },
+                      );
+                    }
+                  },
+                ),
+              )
             ],
           ),
         ),

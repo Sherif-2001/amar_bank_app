@@ -166,7 +166,7 @@ class _PayPageState extends State<PayPage> {
                             if (value.length < 5) {
                               return 'Incomplete Value';
                             }
-                            if (value != dropdownvalue) {
+                            if (!value.startsWith(dropdownvalue)) {
                               return "Incorrect ID";
                             }
                             return null;

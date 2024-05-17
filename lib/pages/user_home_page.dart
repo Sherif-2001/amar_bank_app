@@ -1,9 +1,13 @@
+import 'dart:io';
+
 import 'package:amar_bank_app/models/user_data.dart';
 import 'package:amar_bank_app/pages/pay_page.dart';
 import 'package:amar_bank_app/services/auth.dart';
 import 'package:amar_bank_app/services/database_helper.dart';
+import 'package:amar_bank_app/widgets/custom_bottom_sheet.dart';
 import 'package:amar_bank_app/widgets/service_card.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class UserHomePage extends StatefulWidget {
   const UserHomePage({super.key});
@@ -13,6 +17,7 @@ class UserHomePage extends StatefulWidget {
 }
 
 class _UserHomePageState extends State<UserHomePage> {
+  Widget? userImage;
   UserData data = UserData(
       address: "",
       balance: 0,
@@ -25,6 +30,23 @@ class _UserHomePageState extends State<UserHomePage> {
       username: "");
   void getCurrentUserData() async {
     data = await DatabaseHelper().getCurrentUserData();
+    setState(() {});
+  }
+
+  void pickImage(ImageSource source) async {
+    final pickedImage = await ImagePicker().pickImage(source: source);
+    if (pickedImage == null) return;
+    final pickedImageFile = File(pickedImage.path);
+    Navigator.pop(context);
+
+    userImage = ClipOval(
+      child: Image.file(
+        pickedImageFile,
+        fit: BoxFit.fitWidth,
+        width: 60,
+        height: 60,
+      ),
+    );
     setState(() {});
   }
 
@@ -62,11 +84,29 @@ class _UserHomePageState extends State<UserHomePage> {
                 currentAccountPicture: CircleAvatar(
                   backgroundColor: Colors.white,
                   child: GestureDetector(
-                    onTap: () {},
-                    child: const Icon(
-                      Icons.person,
-                      color: Colors.black,
-                    ),
+                    onTap: () {
+                      showModalBottomSheet(
+                        context: context,
+                        backgroundColor: Colors.yellow[100],
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.vertical(
+                            top: Radius.circular(20),
+                          ),
+                        ),
+                        builder: (context) {
+                          return CustomBottomSheet(
+                            onCameraTap: () => pickImage(ImageSource.camera),
+                            onGalleryTap: () => pickImage(ImageSource.gallery),
+                          );
+                        },
+                      );
+                      setState(() {});
+                    },
+                    child: userImage ??
+                        const Icon(
+                          Icons.person,
+                          color: Colors.black,
+                        ),
                   ),
                 ),
                 accountName: Text(data.username

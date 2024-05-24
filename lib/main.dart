@@ -4,6 +4,7 @@ import 'package:amar_bank_app/firebase_options.dart';
 import 'package:amar_bank_app/pages/bill_page.dart';
 import 'package:amar_bank_app/pages/pay_page.dart';
 import 'package:amar_bank_app/pages/registeration_page.dart';
+import 'package:amar_bank_app/pages/reset_password_page.dart';
 import 'package:amar_bank_app/pages/transfer_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -50,6 +51,7 @@ class MyApp extends StatelessWidget {
         '/currency_rate': (context) => const CurrencyExchangeRate(),
         '/chat_bot': (context) => const ChatBot(),
         '/forget_p_u': (context) => const ForgetPasswordPage(),
+        "/reset_pass":(context) => const ResetPasswordPage(cardNum: ''),
         '/loan_calc': (context) => const LoanCalc(),
         '/pay': (context) => const PayPage(companyType: "Electricity"),
         '/elec_bill': (context) => const BillPage(),

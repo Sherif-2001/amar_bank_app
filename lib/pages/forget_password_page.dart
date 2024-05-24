@@ -1,3 +1,4 @@
+import 'package:amar_bank_app/pages/reset_password_page.dart';
 import 'package:amar_bank_app/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -11,11 +12,11 @@ class ForgetPasswordPage extends StatefulWidget {
 }
 
 class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
+  final _emailController = TextEditingController();
   final _expDateController = TextEditingController();
   final _nationalidController = TextEditingController();
   final _cardNumberController = TextEditingController();
   final _cardpinController = TextEditingController();
-  final _newPassController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +38,53 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
               Text('FORGET PASSWORD'.toUpperCase(),
                   style: const TextStyle(
                       fontSize: 20, fontWeight: FontWeight.bold)),
+              Container(
+                decoration: const BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.grey,
+                          blurRadius: 8.0,
+                          spreadRadius: 2.0)
+                    ],
+                    color: Colors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(10))),
+                margin: const EdgeInsets.symmetric(vertical: 10),
+                child: Card(
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: TextFormField(
+                      controller: _emailController,
+                      cursorColor: Colors.grey,
+                      keyboardType: TextInputType.number,
+                      decoration: const InputDecoration(
+                        floatingLabelStyle: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold),
+                        hintStyle: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 20) //ممكن ادي الملاحظة لون ,
+                        ,
+                        labelText: "Email" //ده عنوان ومش بيختفي لما اختار الحقل
+                        ,
+                        labelStyle: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 20,
+                            fontWeight:
+                                FontWeight.bold) //و فيه كمان لون للعنوان
+                        , //الايقونة اللي بتظهر في جنب في الحقل
+                        //ممكن بدل prefix اعمل حاجة تعكس مكان ظهور الايقونة في الحقل اسمها suffix
+                      ),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "Field is Required";
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                ),
+              ),
               Container(
                 decoration: const BoxDecoration(
                     boxShadow: [
@@ -248,55 +296,6 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                   ),
                 ],
               ),
-              Container(
-                decoration: const BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                          color: Colors.grey,
-                          blurRadius: 8.0,
-                          spreadRadius: 2.0)
-                    ],
-                    color: Colors.white,
-                    borderRadius: BorderRadius.all(Radius.circular(10))),
-                margin: const EdgeInsets.symmetric(vertical: 10),
-                child: Card(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: TextFormField(
-                      controller: _newPassController,
-                      cursorColor: Colors.grey,
-                      keyboardType: TextInputType.number,
-                      maxLength: 8,
-                      decoration: InputDecoration(
-                        floatingLabelStyle: const TextStyle(
-                            color: Colors.grey,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold),
-                        hintStyle: const TextStyle(
-                            color: Colors.grey,
-                            fontSize: 20) //ممكن ادي الملاحظة لون ,
-                        ,
-                        labelText: "New Password"
-                            .toUpperCase() //ده عنوان ومش بيختفي لما اختار الحقل
-                        ,
-                        labelStyle: const TextStyle(
-                            color: Colors.grey,
-                            fontSize: 20,
-                            fontWeight:
-                                FontWeight.bold) //و فيه كمان لون للعنوان
-                        , //الايقونة اللي بتظهر في جنب في الحقل
-                        //ممكن بدل prefix اعمل حاجة تعكس مكان ظهور الايقونة في الحقل اسمها suffix
-                      ),
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return "Field is Required";
-                        }
-                        return null;
-                      },
-                    ),
-                  ),
-                ),
-              ),
               InkWell(
                 child: Container(
                   margin:
@@ -312,22 +311,31 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                       borderRadius: BorderRadius.all(Radius.circular(6))),
                   height: 60,
                   child: Center(
-                      child: Text("Reset Password".toUpperCase(),
-                          style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold))),
+                    child: Text(
+                      "Proceed".toUpperCase(),
+                      style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
                 ),
                 onTap: () async {
                   if (_formKey.currentState!.validate()) {
-                    final isUserExist = await Auth().resetPassword(
-                        cardNum: _cardNumberController.text,
-                        nationalId: _nationalidController.text,
-                        cardPin: _cardpinController.text,
-                        expDate: _expDateController.text,
-                        newPassword: _newPassController.text);
+                    final isUserExist = await Auth().isForgetPasswordUserExists(
+                      email: _emailController.text,
+                      cardNum: _cardNumberController.text,
+                      nationalId: _nationalidController.text,
+                      cardPin: _cardpinController.text,
+                      expDate: _expDateController.text,
+                    );
                     if (isUserExist) {
-                      Navigator.pop(context);
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ResetPasswordPage(
+                                cardNum: _cardNumberController.text),
+                          ));
                     }
                   }
                   //اكشن زرار ال continue

@@ -1,5 +1,4 @@
 import 'package:amar_bank_app/services/auth.dart';
-import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 

@@ -135,34 +135,40 @@ class _ProductsPageState extends State<ProductsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.yellow[100],
-        centerTitle: true,
-        title: const Text(
-          "What Do You Want To Apply",
-          style: TextStyle(color: Colors.black, fontSize: 20),
+    return PopScope(
+      canPop: false,
+      onPopInvoked: (didPop) {
+        Navigator.pushReplacementNamed(context, "/user_home_page");
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.yellow[100],
+          centerTitle: true,
+          title: const Text(
+            "What Do You Want To Apply",
+            style: TextStyle(color: Colors.black, fontSize: 20),
+          ),
         ),
-      ),
-      body: wedPages.elementAt(selectedIndex),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.yellow[100],
-        selectedItemColor: Colors.black,
-        unselectedItemColor: Colors.grey,
-        currentIndex: selectedIndex,
-        onTap: (index) {
-          setState(() {
-            selectedIndex = index;
-          });
-        },
-        items: const [
-          BottomNavigationBarItem(
-              label: "Accounts", icon: Icon(Icons.account_balance)),
-          BottomNavigationBarItem(
-              label: "Certificate", icon: Icon(Icons.inventory_2_outlined)),
-          BottomNavigationBarItem(
-              label: "Time Deposit", icon: Icon(Icons.more_time_outlined)),
-        ],
+        body: wedPages.elementAt(selectedIndex),
+        bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: Colors.yellow[100],
+          selectedItemColor: Colors.black,
+          unselectedItemColor: Colors.grey,
+          currentIndex: selectedIndex,
+          onTap: (index) {
+            setState(() {
+              selectedIndex = index;
+            });
+          },
+          items: const [
+            BottomNavigationBarItem(
+                label: "Accounts", icon: Icon(Icons.account_balance)),
+            BottomNavigationBarItem(
+                label: "Certificate", icon: Icon(Icons.inventory_2_outlined)),
+            BottomNavigationBarItem(
+                label: "Time Deposit", icon: Icon(Icons.more_time_outlined)),
+          ],
+        ),
       ),
     );
   }

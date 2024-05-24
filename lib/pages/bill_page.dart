@@ -52,7 +52,7 @@ class _BillPageState extends State<BillPage> {
       appBar: AppBar(
         backgroundColor: Colors.black,
         title: const Text(
-          'Electricity Bill',
+          'Bill',
           style: TextStyle(
             fontSize: 30,
             color: Colors.white,

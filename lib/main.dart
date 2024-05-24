@@ -7,6 +7,7 @@ import 'package:amar_bank_app/pages/registeration_page.dart';
 import 'package:amar_bank_app/pages/transfer_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'pages/atm_branch_maps.dart';
 import 'pages/currency_exchange_rate.dart';
 import 'pages/faqs.dart';
@@ -26,6 +27,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(const MyApp());
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
 }
 
 class MyApp extends StatelessWidget {

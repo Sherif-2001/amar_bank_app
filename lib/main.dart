@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'pages/atm_branch_maps.dart';
 import 'pages/currency_exchange_rate.dart';
 import 'pages/faqs.dart';
-import 'pages/forget_pass_or_user.dart';
+import 'pages/forget_password_page.dart';
 import 'pages/loan_calc.dart';
 import 'pages/TEST_PAGEEEEEEEE.dart';
 import 'pages/products_page.dart';
@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
         '/atm_or_branch': (context) => const ATMBranch(),
         '/currency_rate': (context) => const CurrencyExchangeRate(),
         '/chat_bot': (context) => const ChatBot(),
-        '/forget_p_u': (context) => const ForgetPasswordAndUser(),
+        '/forget_p_u': (context) => const ForgetPasswordPage(),
         '/loan_calc': (context) => const LoanCalc(),
         '/pay': (context) => const PayPage(companyType: "Electricity"),
         '/elec_bill': (context) => const BillPage(),

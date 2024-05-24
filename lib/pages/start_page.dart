@@ -143,7 +143,7 @@ class _StartPageState extends State<StartPage> {
                                     ),
                                     validator: (value) {
                                       if (value!.isEmpty) {
-                                        return ' Field is Required';
+                                        return 'Field is Required';
                                       }
                                       return null;
                                     },
@@ -223,7 +223,7 @@ class _StartPageState extends State<StartPage> {
                   children: [
                     const SizedBox(width: 10),
                     InkWell(
-                        child: const Text("Forget Password Or User Name ..?",
+                        child: const Text("Forget Password..?",
                             style: TextStyle(
                                 color: Colors.grey,
                                 fontSize: 20,

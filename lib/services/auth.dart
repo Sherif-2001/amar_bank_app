@@ -28,8 +28,21 @@ class Auth {
         email: email, password: password);
   }
 
-  Future<void> resetPassword({required String email}) async {
-    await _firebaseAuth.sendPasswordResetEmail(email: email);
+  Future<bool> forgetPassword(
+      {required String cardNum,
+      required String nationalId,
+      required String cardPin,
+      required String expDate}) async {
+    final user = await DatabaseHelper().getUserDataByCardNum(cardNum);
+    if (user != null &&
+        user.nationalId == nationalId &&
+        user.cardPin == cardPin &&
+        user.expiryDate == expDate) {
+      await signInWithEmailAndPassword(
+          email: user.email, password: user.password);
+      return true;
+    }
+    return false;
   }
 
   Future<void> signOut() async {

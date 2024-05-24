@@ -154,4 +154,11 @@ class DatabaseHelper {
     await userDoc.update(
         {"Products": updatedProducts.map((item) => item.toJson()).toList()});
   }
+
+  Future<void> changePassword(String cardNum, String newPassword) async {
+    DocumentReference documentReference =
+        FirebaseFirestore.instance.collection("Users").doc(cardNum);
+
+    documentReference.update({"Password": newPassword});
+  }
 }

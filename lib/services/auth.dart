@@ -28,16 +28,18 @@ class Auth {
         email: email, password: password);
   }
 
-  Future<bool> forgetPassword(
+  Future<bool> resetPassword(
       {required String cardNum,
       required String nationalId,
       required String cardPin,
-      required String expDate}) async {
+      required String expDate,
+      required String newPassword}) async {
     final user = await DatabaseHelper().getUserDataByCardNum(cardNum);
     if (user != null &&
         user.nationalId == nationalId &&
         user.cardPin == cardPin &&
         user.expiryDate == expDate) {
+      await DatabaseHelper().changePassword(cardNum, newPassword);
       await signInWithEmailAndPassword(
           email: user.email, password: user.password);
       return true;

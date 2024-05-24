@@ -75,7 +75,6 @@ class _StartPageState extends State<StartPage> {
               const EdgeInsets.only(top: 40, left: 10, right: 10, bottom: 10),
           child: SingleChildScrollView(
             child:
-                //  Form--------------------
                 Column(
               children: [
                 SizedBox(
@@ -90,7 +89,6 @@ class _StartPageState extends State<StartPage> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          /////////////////////////////////
                           Expanded(
                             child: Container(
                               decoration: const BoxDecoration(

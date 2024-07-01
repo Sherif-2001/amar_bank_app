@@ -74,8 +74,7 @@ class _StartPageState extends State<StartPage> {
           padding:
               const EdgeInsets.only(top: 40, left: 10, right: 10, bottom: 10),
           child: SingleChildScrollView(
-            child:
-                Column(
+            child: Column(
               children: [
                 SizedBox(
                     width: screenwidth / 1.5,
@@ -150,7 +149,6 @@ class _StartPageState extends State<StartPage> {
                               ),
                             ),
                           ),
-
                           Expanded(
                             child: Container(
                               decoration: const BoxDecoration(
@@ -318,7 +316,8 @@ class _StartPageState extends State<StartPage> {
                         ),
                         onTap: () {
                           setState(() {
-                            Navigator.of(context).pushNamed("/product");
+                            Navigator.of(context)
+                                .pushReplacementNamed("/product");
                           });
                         },
                       ),

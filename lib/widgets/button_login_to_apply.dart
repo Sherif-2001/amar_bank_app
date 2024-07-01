@@ -26,7 +26,7 @@ class ButtonLoginToApply extends StatelessWidget {
                     fontWeight: FontWeight.bold))),
       ),
       onTap: () {
-        Navigator.of(context).pop();
+        Navigator.pushReplacementNamed(context, "/start");
       },
     );
   }

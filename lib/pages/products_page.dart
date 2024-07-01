@@ -138,7 +138,8 @@ class _ProductsPageState extends State<ProductsPage> {
     return PopScope(
       canPop: false,
       onPopInvoked: (didPop) {
-        Navigator.pushReplacementNamed(context, "/user_home_page");
+        Navigator.pushReplacementNamed(
+            context, Auth().currentUser != null ? "/user_home_page" : "/start");
       },
       child: Scaffold(
         appBar: AppBar(

@@ -275,12 +275,13 @@ class _UserHomePageState extends State<UserHomePage> {
                           color: Colors.black,
                           borderRadius: BorderRadius.all(Radius.circular(10))),
                       child: const Center(
-                        child: Text(
-                          "Card Expiry Date",
-                          style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
+                        child: FittedBox(
+                          child: Text(
+                            "Card Expiry Date",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
                         ),
                       ),
                     ),

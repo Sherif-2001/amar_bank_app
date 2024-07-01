@@ -81,7 +81,9 @@ class DatabaseHelper {
         .collection("Users")
         .doc(currentUserData.cardNum);
 
-    documentReference.update({"Balance": FieldValue.increment(-billPrice)});
+    if (currentUserData.balance >= billPrice) {
+      documentReference.update({"Balance": FieldValue.increment(-billPrice)});
+    }
   }
 
   Future<void> transferMoney(int amountOfMoney, String receiverCardNum) async {

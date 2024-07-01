@@ -99,34 +99,55 @@ class _BillPageState extends State<BillPage> {
                             fontWeight: FontWeight.bold))),
               ),
               onTap: () {
-                //اكشن زرار ال continue
-                payBill();
-                setState(
-                  () {
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialog(
-                          backgroundColor: Colors.yellow[100],
-                          title: const Center(
-                              child: Text(
-                                  "Are you sure that you want to pay this bill?")),
-                          content: MaterialButton(
-                            color: Colors.black,
-                            onPressed: () async {
-                              Navigator.of(context).pop();
-                            },
-                            child: const Text(
-                              'yes',
-                              style:
-                                  TextStyle(fontSize: 24, color: Colors.white),
-                            ),
+                if (_userData.balance < temp) {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        backgroundColor: Colors.yellow[100],
+                        title: const Center(child: Text("Not Enough Balance")),
+                        content: MaterialButton(
+                          color: Colors.black,
+                          onPressed: () async {
+                            Navigator.of(context).pop();
+                          },
+                          child: const Text(
+                            'OK',
+                            style: TextStyle(fontSize: 24, color: Colors.white),
                           ),
-                        );
-                      },
-                    );
-                  },
-                );
+                        ),
+                      );
+                    },
+                  );
+                } else {
+                  payBill();
+                  setState(
+                    () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            backgroundColor: Colors.yellow[100],
+                            title: const Center(
+                                child: Text(
+                                    "Are you sure that you want to pay this bill?")),
+                            content: MaterialButton(
+                              color: Colors.black,
+                              onPressed: () async {
+                                Navigator.of(context).pop();
+                              },
+                              child: const Text(
+                                'yes',
+                                style: TextStyle(
+                                    fontSize: 24, color: Colors.white),
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    },
+                  );
+                }
               },
             ),
           ],
